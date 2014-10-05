@@ -1,0 +1,42 @@
+\documentclass[11pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb,amsthm,mathtools}
+\usepackage{hyperref,graphicx}
+\graphicspath{ {images/} }
+
+\newtheorem{definition}{Definition}[chapter]
+
+\begin{document}
+
+\title{
+	{Semi-Supervised Learning on Riemannian Manifolds}\\
+	{\large University of Vienna}\\
+	{\includegraphics{university.png}}
+}
+\author{Peter Mühlbacher}
+\date{October 1, 2014}
+\maketitle
+
+\begin{abstract}
+%Das Beste kommt zum Schluss
+\end{abstract}
+
+\tableofcontents
+
+\chapter*{Introduction}
+\input{chapters/introduction}
+
+\chapter{Mapping Graphs to the Real Line}
+\input{chapters/ClassifierMotivation}
+
+%\chapter{Laplace Operator}
+%\input{chapters/LaplaceOperator}
+
+%\chapter{Discrete Laplacian}
+%\input{chapters/LaplacianMatrix}
+
+\appendix
+\chapter{Implementations}
+%\input{chapters/appendix}
+
+\end{document}

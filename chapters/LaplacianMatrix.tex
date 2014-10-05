@@ -1,0 +1,25 @@
+\section{Definitions}
+finite graph (henceforth with n vertices)
+
+simple graph: an undirected graph that has no loops (edges connected at both ends to the same vertex) and no more than one edge between any two different vertices
+
+degree matrix: a diagonal matrix which contains information about the degree of each vertex—that is, the number of edges attached to each vertex; undirected graph $\rightarrow$ symmetric
+
+adjacancy matrix: $n \times n$ matrix where the non-diagonal entry $a_{ij}$ is the number of edges from vertex $i$ to vertex $j$, and the diagonal entry $a_{ii}$, depending on the convention, is either once or twice the number of edges (loops) from vertex $i$ to itself
+
+Laplacian matrix $L:=D-A$ where $D$ is the graph's degree matrix and $A$ the adjacancy matrix
+
+\section{Properties}
+\begin{itemize}
+    \item positive-semidefinite matrix
+    \item eigenvalues
+    \begin{itemize}
+        \item 0 always eigenvalue
+        \item importance of second smallest eigenvalue
+        \item corresponding eigenfunctions may be seen as a generalization of (low frequency) Fourier-transformation
+    \end{itemize}
+    \item operator on the $n$-dimensional vector space of functions $f:V \rightarrow R$, where $V$ is the vertex set of $G$, and $n=|V|$
+\end{itemize}
+
+
+\section{Interpretation as the Discrete Laplace Operator}

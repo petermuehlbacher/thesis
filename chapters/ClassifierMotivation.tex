@@ -1,0 +1,49 @@
+\section{Classification}
+Given a space $X$ and a probability distribution $\tau$ on $X\times \mathbb{R}$
+\footnote{another way to put this would be that for every $x\in X$ there exists a probability distribution $\tau _x$ specifying how likely this $x$ goes together with some real number $r$},
+a \textit{regression problem} is the problem of finding a function $f:X\rightarrow \mathbb{R}$, $f(x)=\mathrm{E}_{\tau _x}(y)$, where  $y$ has the distribution $\tau _x$ (the marginal distribution of $x$ on $\mathbb{R}$).
+
+In real-world applications we have a finite set of samples $(x_1,y_1), \dots, (x_n,y_n)$ from which we reconstruct a function that should
+\begin{enumerate}
+    \item describe the given examples well
+    \item make the probability of making large errors for new examples small
+\end{enumerate}
+This problem is closely related to the idea of interpolation and as we already know fulfilling the first requirement perfectly hardly ever goes hand in hand with the second one. In practice one wants to balance the complexity \footnote{Depending on the concrete implementation there are different definitions of complexity. In the theory of splines (or kernel methods in machine learning) $||f||_\mathbb{H}$, where $\mathbb{H}$ is a reproducing kernel Hilbert space \textbf{(note to myself: read up one this subject, next Bachelor thesis?)}, may be seen as one; there also exist combinatorial approaches and in this work we will introduce a smoothness functional to be minimized.} of a function and its ability to describe given data.
+
+\textit{Classification} may be seen as a special case of regression where we aim to find a function $f:X\rightarrow \{c_1,\dots,c_n\}$.
+
+\section{An Implicit Definition of the Classifier}
+\subsection{The Discrete Case}
+To develop a better understanding the discrete case will be dealt with in the first place.
+
+Given a set of points $\{x_i\}_{i=1,\dots,n}$, $x_i \in \mathbb{R}^l$ a weighted graph $G$ can be constructed. Nearby\footnote{There are two major common approaches of determining when two nodes are adjacent: k nearest neighbours (find the $k$ nearest nodes) and $\epsilon$-neighbourhoods (two nodes $x,y$ are connected if and only if $||x-y||<\epsilon$)} nodes $x_i,x_j$ are connected with weights $W_{ij}=e^{-\frac{||x_i - x_j||^2}{t}}$, the weight between unconnected nodes is set to $0$. (\textbf{note to myself: depending on the length of the work either remark that an explanation will be given later on (heat diffusion resembles this (=Gaussian heat kernel) or not at all (in this case set weights to 1 (which may also be seen as $t\rightarrow \infty$, all mathematical properties should stay the same))})
+
+Consider the problem of mapping the weighted graph to the real line so that connected points stay together as close as possible.\footnote{For simplicity's sake assume that the graph is connected.}
+
+As the above defined weights of adjacent nodes are defined in such a way that they are indirectly proportional to their (euclidian) distance it seems natural that $(y_1,\dots,y_n)^T$ is a good map if
+\begin{equation} \label{eq:discreteDirichletEnergy}
+    \sum _{ij} (y_i - y_j)^2 W_{ij}
+\end{equation}
+is minimal.
+
+Let $D$ be the degree matrix of the graph $G$, then its Laplacian $L$ is defined as
+\begin{definition}
+    L:=D-W
+\end{definition}
+
+and \eqref{eq:discreteDirichletEnergy} may be written as 
+
+\begin{equation*}\begin{array}{l l}
+\sum _{ij} (y_i - y_j)^2 W_{ij} &= \sum _{ij} (y_i^2 + y_j^2 - 2y_i y_j) W_{ij}\\
+    &= \sum _{i} y_i^2 D_{ii} + \sum _{j} y_j^2 D_{jj} - 2\sum _{ij} y_i y_j W_{ij}\\
+    &= 2y^TLy
+\end{array}\end{equation*}
+
+Not only do we see that the minimization problem reduces to finding
+
+\begin{equation*}
+    \text{argmin}_y y^TLy
+\end{equation*}
+but also that $L$ is positive semidefinite.
+
+However, an additional constraint ($y^TL\text{1}=0$, where 1 is the ) is needed as the trivial solution (i.e. mapping all nodes to a single point) is not excluded.
