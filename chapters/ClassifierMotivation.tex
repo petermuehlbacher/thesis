@@ -46,4 +46,13 @@ Not only do we see that the minimization problem reduces to finding
 \end{equation*}
 but also that $L$ is positive semidefinite.
 
-However, an additional constraint ($y^TL\text{1}=0$, where 1 is the ) is needed as the trivial solution (i.e. mapping all nodes to a single point) is not excluded.
+However, an additional constraint ($y^TL\mathbb{1}=0$, where $\mathbb{1}$ is the constant function mapping all nodes to 1; it is easy to see that this is an eigenfunction to the eigenvalue 0) is needed as the trivial solution is not excluded.
+
+Additionaly, we want to assign some kind of importance to each of the nodes, based on how many adjacent nodes it has; we do this by adding the additional constraint $y^TDy=1$ which, due to the nature of the objective function \eqref{eq:discreteDirichletEnergy}, leads to the generalized eigenvalue problem $Ly=\lambda Dy$.
+
+\textbf{TODO: explain why eigenvalues are important here (could resemble the proof why the Hölder norm for $p=2$ induces the spectral norm(?))}
+
+\subsection{The Continuous Case}
+\begin{definition}
+    Laplace-Beltrami operator goes here (\textbf{note to myself: define only for $\mathbb{R}^n$ or more generally?})
+\end{definition}
