@@ -18,3 +18,4 @@ Read up on the following
 -----
 * integration of differential forms on manifolds (Stokes, tensors)
 * show that spectrum of Laplacian on a compact manifold is discrete
+* reproducing kernel Hilbert spaces (next thesis?)
