@@ -1,7 +1,7 @@
 \section{Classification}
-Given a space $X$ and a probability distribution $\tau$ on $X\times \mathbb{R}$
+Given a space $X$ and a probability distribution $\tau$ on $X\times \Real$
 \footnote{another way to put this would be that for every $x\in X$ there exists a probability distribution $\tau _x$ specifying how likely this $x$ goes together with some real number $r$},
-a \textit{regression problem} is the problem of finding a function $f:X\rightarrow\mathbb{R}$, $f(x)=\mathrm{E}_{\tau _x}(y)$, where  $y$ has the distribution $\tau _x$ (the marginal distribution of $x$ on $\mathbb{R}$).
+a \textit{regression problem} is the problem of finding a function $f:X\rightarrow\Real$, $f(x)=\mathrm{E}_{\tau _x}$, where  $\mathrm{E}_{\tau _x}$ is the expected value of a random variable $Y$ which has the distribution $\tau _x$ (the marginal distribution of $x$ on $\Real$).
 
 In real-world applications we have a finite set of samples $(x_1,y_1), \dots, (x_n,y_n)$ from which we reconstruct a function that should
 \begin{enumerate}
@@ -16,10 +16,15 @@ This problem is closely related to the idea of interpolation and as we already k
 \subsection{The Discrete Case}
 To develop a better understanding the discrete case will be dealt with in the first place.
 
-Given a set of points $\{x_i\}_{i=1,\dots,n}$, $x_i \in \mathbb{R}^l$ a weighted graph $G$ can be constructed. Nearby\footnote{There are two major common approaches of determining when two nodes are adjacent: k nearest neighbours (find the $k$ nearest nodes) and $\epsilon$-neighbourhoods (two nodes $x,y$ are connected if and only if $||x-y||<\epsilon$)} nodes $x_i,x_j$ are connected with weights $W_{ij}=e^{-\frac{||x_i - x_j||^2}{t}}$, the weight between unconnected nodes is set to $0$.\todo{depending on the length of the work either remark that an explanation will be given later on (heat diffusion resembles this (=Gaussian heat kernel) or not at all (in this case set weights to 1 (which may also be seen as $t\rightarrow\infty$, all mathematical properties should stay the same))}
+Given a set of points $\{x_i\}_{i=1,\dots,n}$, $x_i \in \Real^l$ a weighted graph $G$ can be constructed. For determining which nodes are \textit{adjacent} we will resort to either of two major common definitions:
+\begin{enumerate}
+    \item \textbf{k nearest neighbours}: find the $k$ nearest nodes
+    \item \textbf{$\epsilon$-neighbourhoods}: two nodes $x,y$ are connected if and only if $||x-y||<\epsilon$
+\end{enumerate}
+
+Nearby nodes $x_i,x_j$ are connected with weights $W_{ij}=e^{-\frac{||x_i - x_j||^2}{t}}$, the weight between unconnected nodes is set to $0$.\todo{depending on the length of the work either remark that an explanation will be given later on (heat diffusion resembles this (=Gaussian heat kernel) or not at all (in this case set weights to 1 (which may also be seen as $t\rightarrow\infty$, all mathematical properties should stay the same))}
 
 Consider the problem of mapping the weighted graph to the real line so that connected points stay together as close as possible.\footnote{For simplicity's sake assume that the graph is connected.}
-
 As the above defined weights of adjacent nodes are defined in such a way that they are indirectly proportional to their (euclidian) distance it seems natural that $(y_1,\dots,y_n)^T$ is a good map if
 \begin{equation} \label{eq:discreteDirichletEnergy}
     \sum_{ij} (y_i - y_j)^2 W_{ij}
@@ -55,5 +60,7 @@ Additionaly, we want to assign some kind of importance to each of the nodes, bas
 \subsection{The Continuous Case}
 \begin{definition}
     $\Lagr f:=-\mathrm{div}\nabla f$
-    \todo{define only for $\mathbb{R}^n$ or more generally?}
+    \todo{define only for $\Real^n$ or more generally?}
 \end{definition}
+
+In analogy to the discrete case let $f:\Man\rightarrow\Real$ be a function that maps points with "small" geodesic distance "close" together on the real line and assume $f\in C^2$.
