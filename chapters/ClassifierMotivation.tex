@@ -57,7 +57,7 @@ Additionaly, we want to assign some kind of importance to each of the nodes, bas
 
 To solve $\underset{y^TDy=1}{\argmin}y^Ly$ we make use of Lagrange multipliers:
 \begin{equation*}
-    \frac{\partial}{\partial y}(y^Ly-\lambda(y^TDy-1)) =
+    \frac{\partial}{\partial y}(y^TLy-\lambda(y^TDy-1)) =
     2Ly-2\lambda Dy =
     (L-\lambda D)y \overset{!}{=}0
 \end{equation*}
