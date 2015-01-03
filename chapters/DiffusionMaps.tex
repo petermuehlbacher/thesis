@@ -47,14 +47,14 @@ $p(x,y)$ is no longer symmetric, but inherited the positivity and now satisfies 
 \int_\Gamma p(x,y)d\mu(y)=1
 \end{equation*}
 
-As a result the matrix $P:=(p(i,j))_{i,j}$ is stochastic and can be interpreted as the transition matrix of a homogeneous Markov process on $\Gamma$. In spectral graph theory $\mathbb{I}-P$ is commonly referred to as normalized, weighted graph Laplacian. This naming will be justified with the following theorem:
+As a result the matrix $P:=(p(i,j))_{i,j}$ is stochastic and can be interpreted as the transition matrix of a homogeneous Markov process on $\Gamma$. In spectral graph theory $\mathbb{I}-P$ is commonly referred to as normalized, weighted graph Laplacian. 
 
-\begin{theorem}[Convergence of Graph Laplacian]
+%This naming will be justified with the following theorem:
+%\begin{theorem}[Convergence of Graph Laplacian]
+%\end{theorem}
+%\begin{proof}
+%\end{proof}
 
-\end{theorem}
-\begin{proof}
-
-\end{proof}
 To investigate the spectral properties of the corresponding integral operator $P$ defined by $Pf(x)=\int_\Gamma p(x,y)f(y)d\mu(y)$ it is beneficial to examine the symmetric, conjugated Operator $A$.
 
 First, notice that by setting $a(x,y)=\frac{k(x,y)}{v(x)v(y)}=v(x)p(x,y)\frac{1}{v(y)}$ one obtains a symmetric form and thus a symmetric operator $Af(x)=\int_\Gamma a(x,y)f(y)d\mu(y)$ which will be referred to as diffusion operator from now on.
@@ -63,13 +63,13 @@ First, notice that by setting $a(x,y)=\frac{k(x,y)}{v(x)v(y)}=v(x)p(x,y)\frac{1}
 \begin{theorem}[Spectral Properties of the Diffusion Operator]
 The diffusion operator $A$ with kernel $a$ is bounded from $L^2(\Gamma, d\mu)$ into itself, symmetric and positive semi-definite.
 
-Moreover, its norm is $$||A||=1$$ and is taken by the eigenfunction $$Av=v$$.
+Moreover, its norm is $$||A||=1$$ and is taken by the eigenfunction $$Av=v.$$
 \end{theorem}
 \begin{proof}
 Let $f\in L^2(\Gamma, d\mu)$. We have:
 \begin{equation}\label{positivityOfA}
-\langle Af,f \rangle = \int_{\Gamma^2}k(x,y)\frac{f(x)}{v(x)}\frac{f(y)}{v(y)}d\mu(x)d\mu(y)
-\end{equation}.
+\langle Af,f \rangle = \int_{\Gamma^2}k(x,y)\frac{f(x)}{v(x)}\frac{f(y)}{v(y)}d\mu(x)d\mu(y).
+\end{equation}
 
 Applying the Cauchy-Schwartz inequality we get:
 \begin{equation*}\begin{array}{l l}
