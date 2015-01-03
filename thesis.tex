@@ -6,17 +6,16 @@
 \usepackage{natbib}
 \graphicspath{ {images/} }
 
-\newcommand{\Lagr}{\mathcal{L}}
+\newcommand{\Lapl}{\mathcal{L}}
 \newcommand{\Man}{\mathcal{M}}
 \newcommand{\Real}{\mathbb{R}}
+\newcommand{\eps}{\varepsilon}
 
 \newtheorem{definition}{Definition}[chapter]
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{corollary}{Corollary}[theorem]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem*{remark}{Remark}
-
-\DeclareMathOperator*{\argmin}{arg\,min\ }
 
 \begin{document}
 
@@ -45,8 +44,12 @@
 %\input{chapters/ClassifierMotivation}
 
 \appendix
-\chapter{Special Cases}
-\input{chapters/appendix}
+\chapter{Asymptotics for Laplacian Operators}
+\input{chapters/LaplacianOperators}
+
+%\appendix
+%\chapter{Special Cases}
+%\input{chapters/appendix}
 
 \bibliographystyle{te}
 \bibliography{references}
