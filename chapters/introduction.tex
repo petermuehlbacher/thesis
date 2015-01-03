@@ -1,7 +1,9 @@
-The contentual layout follows that of \cite{PLM_UCTHESIS_03}. Some definitions, theorems and examples will be taken from this work as well.
+The contentual layout follows that of \cite{Coifman20065} and \cite{PLM_UCTHESIS_03} for a concrete implementation. Some definitions, theorems and examples will be taken from these works as well.
 
-%in machine learning we often encounter intrinsically low dimensional data in high dimensional spaces (e.g. $R^{n^2}$ for 2 two-dimensional images with $n\times n$ pixels; given some kind of structure behind the data we may assume it does not have as many degrees of freedom as the space it is embedded in)
+\section{Dimensionality Reduction}
 
-%thus we aim for a way to achieve dimensionality reduction; that is, reducing the dimensionality of the space the data is represented in as much as possible without losing information about the data
-
-%so far approaches comprise linear dimensionality reduction (PCA, consider fitting an $n$-dimensional ellipsoid to the data, remove dimensions with the least principal component; fails to capture nonlinear correlation of the variables $\rightarrow$ \href{http://upload.wikimedia.org/wikipedia/en/e/e1/Letters_pca.png}{PCA on nonlinearly dependend variables}, \href{http://upload.wikimedia.org/wikipedia/en/9/9c/Nldr.jpg}{nonlinear dimensionality reduction method on the same data}) and nonlinear dimensionality reduction (neural networks $\rightarrow$ autoencoders (train a neural network to learn the identity function, less output neurons than input neurons $\rightarrow$ nonlinear dimensionality reduction; manifold fitting (didn't read much about those other methods (yet?), apparently their inherent problem is that they set up a nonlinear (and non-convex!) optimization problem, mostly solved by gradient descent $\rightarrow$ only local optima are being found; however there are nonlinear generalizations of PCA (Schoelkopf), working with kernels, that do not have this problem))
+\subsection{The Problem}
+\subsection{Existing Approaches}
+\subsubsection{Linear PCA}
+\subsubsection{Kernel PCA}
+%\subsubsection{Autoencoders}

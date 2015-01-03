@@ -6,17 +6,22 @@
 \usepackage{natbib}
 \graphicspath{ {images/} }
 
-\newtheorem{definition}{Definition}[chapter]
 \newcommand{\Lagr}{\mathcal{L}}
 \newcommand{\Man}{\mathcal{M}}
 \newcommand{\Real}{\mathbb{R}}
+
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{remark}{Remark}
 
 \DeclareMathOperator*{\argmin}{arg\,min\ }
 
 \begin{document}
 
 \title{
-	{Semi-Supervised Learning on Riemannian Manifolds}\\
+	{Diffusion Maps}\\
 	{\large University of Vienna}\\
 	{\includegraphics{university.png}}
 }
@@ -33,17 +38,17 @@
 \chapter*{Introduction}
 \input{chapters/introduction}
 
-\chapter{Mapping Graphs to the Real Line}
-\input{chapters/ClassifierMotivation}
+\chapter{Diffusion Maps}
+\input{chapters/DiffusionMaps}
+
+%\chapter{}
+%\input{chapters/ClassifierMotivation}
 
 \appendix
-\chapter{Implementations}
-%\input{chapters/appendix}
+\chapter{Special Cases}
+\input{chapters/appendix}
 
 \bibliographystyle{te}
 \bibliography{references}
 
 \end{document}
-
-% http://web.cse.ohio-state.edu/~mbelkin/papers/papers.html
-% http://web.cse.ohio-state.edu/~mbelkin/algorithms/algorithms.html
