@@ -116,8 +116,8 @@ and $\omega$ is a potential term depending on the embedding of $\Man$.
 Because of the exponential decay of $h$, the domain of integration can be restricted to the intersection of $\Man$ with the ball of radius $\eps^\gamma$ around $x$. In doing so we generate an error of order
 
 \begin{equation*}\begin{aligned}
-\Bigg|\frac{1}{\eps^\frac{d}{2}}\int\limits_{\substack{y\in\Man \\ ||x-y||>\eps^\gamma}} h\left(\frac{||x-y||^2}{\eps} \right)f(y)dy \Bigg|&\leq
-||f||_\infty \frac{1}{\eps^\frac{d}{2}}\int\limits_{\substack{y\in\Man \\ ||x-y||>\eps^\gamma}} \left|h\left(\frac{||x-y||^2}{\eps} \right)\right|dy \\
+\Bigg|\frac{1}{\eps^\frac{d}{2}}\bigintsss\limits_{\substack{y\in\Man \\ ||x-y||>\eps^\gamma}} h\left(\frac{||x-y||^2}{\eps} \right)f(y)dy \Bigg|&\leq
+||f||_\infty \frac{1}{\eps^\frac{d}{2}}\bigintsss\limits_{\substack{y\in\Man \\ ||x-y||>\eps^\gamma}} \left|h\left(\frac{||x-y||^2}{\eps} \right)\right|dy \\
 &\leq ||f||_\infty \int\limits_{\substack{y\in\Man \\ ||y||>\eps^{\gamma-1/2}}} |h(||y||^2)|dy \\
 &\leq C||f||_\infty Q(\eps^{1/2-\gamma})e^{-\eps^{\gamma-1/2}},
 \end{aligned}\end{equation*}
@@ -125,7 +125,7 @@ Because of the exponential decay of $h$, the domain of integration can be restri
 where we have used the exponential decay of the kernel and where $Q$ is a polynomial. Since $0<\gamma<1/2$, this term is exponentially small and is bounded by $\mathcal{O}(\eps^{\frac{3}{2}})$. Therefore,
 
 \begin{equation*}
-G_\eps f(x)=\frac{1}{\eps^\frac{d}{2}}\int\limits_{\substack{y\in\Man \\ ||x-y||<\eps^\gamma}} h\left(\frac{||x-y||^2}{\eps} \right)f(y)dy+\mathcal{O}(\eps^\frac{3}{2}).
+G_\eps f(x)=\frac{1}{\eps^\frac{d}{2}}\bigintsss\limits_{\substack{y\in\Man \\ ||x-y||<\eps^\gamma}} h\left(\frac{||x-y||^2}{\eps} \right)f(y)dy+\mathcal{O}(\eps^\frac{3}{2}).
 \end{equation*}
 
 Now that things are localized around $x$, we can Taylor-expand the function $(s_1,\dots,s_d)\mapsto f(y(s_1,\dots,s_d))$:
@@ -149,7 +149,7 @@ h\left(\frac{||x-y||^2}{\eps} \right)=h\left(\frac{||u||^2}{\eps} \right) +\left
 Using \eqref{volumeComparison} to change the variable $s\mapsto u$ in the previous integral defining $G_\eps f(x)$ yields:
 
 \begin{equation*}\begin{aligned}
-\eps^\frac{d}{2} G_\eps f(x) =& \int\limits_{||u||<\eps^\gamma} \left(h\left(\frac{||u||^2}{\eps}\right)+\left(\frac{Q_{x,4}(u)+Q_{x,5}(u)}{\eps}\right)h'\left(\frac{||u||^2}{\eps}\right)\right)\\
+\eps^\frac{d}{2} G_\eps f(x) =& \bigintsss\limits_{||u||<\eps^\gamma} \left(h\left(\frac{||u||^2}{\eps}\right)+\left(\frac{Q_{x,4}(u)+Q_{x,5}(u)}{\eps}\right)h'\left(\frac{||u||^2}{\eps}\right)\right)\\
 &\times \left(\tilde{f}(0)+ \sum\limits_{i=1}^d u_i \frac{\partial \tilde{f}}{\partial s_i}(0)+\frac{1}{2}\sum\limits_{i,j=1}^d u_i u_j \frac{\partial^2\tilde{f}}{\partial s_i\partial s_j}(0)+Q_{x,3}(u)\right)\\
 &\times \left(1+Q_{x,2}(u)+Q_{x,3}(u)\right)du + \mathcal{O}\left(\eps^{\frac{d}{2}+2} \right).
 \end{aligned}\end{equation*}
@@ -157,8 +157,8 @@ Using \eqref{volumeComparison} to change the variable $s\mapsto u$ in the previo
 This identity can be dramatically simplified by identifying odd functions and setting their integral to zero. One is left with
 
 \begin{equation*}\begin{aligned}
-\eps^\frac{d}{2} G_\eps f(x)=&\tilde{f}(0)\int_{\Real^d}h\left(\frac{||u||^2}{\eps} \right)du+\frac{1}{2}\left(\sum_{i=1}^d \frac{\partial^2\tilde{f}}{\partial s_i^2}(0) \right)\int_{\Real^d}u_1^2 h\left( \frac{||u||^2}{\eps} \right)du\\
-+&\tilde{f}(0)\int_{\Real^d}\left(\frac{Q_{x,4}(u)}{\eps}h'\left(\frac{||u||^2}{\eps}\right)+\tilde{Q}_{x,2}(u) h\left(\frac{||u||^2}{\eps} \right) \right)du+\mathcal{O}\left(\eps^{\frac{d}{2}+2} \right),
+\eps^\frac{d}{2} G_\eps f(x)=&\tilde{f}(0)\bigintsss_{\Real^d}h\left(\frac{||u||^2}{\eps} \right)du+\frac{1}{2}\left(\sum_{i=1}^d \frac{\partial^2\tilde{f}}{\partial s_i^2}(0) \right)\bigintsss_{\Real^d}u_1^2 h\left( \frac{||u||^2}{\eps} \right)du\\
++&\tilde{f}(0)\bigintsss_{\Real^d}\left(\frac{Q_{x,4}(u)}{\eps}h'\left(\frac{||u||^2}{\eps}\right)+\tilde{Q}_{x,2}(u) h\left(\frac{||u||^2}{\eps} \right) \right)du+\mathcal{O}\left(\eps^{\frac{d}{2}+2} \right),
 \end{aligned}\end{equation*}
 
 where the domain of integration has been extended to $\Real^d$ (exponential decay of $h$). Changing the variable according to $u\mapsto \eps^\frac{1}{2}u$,
