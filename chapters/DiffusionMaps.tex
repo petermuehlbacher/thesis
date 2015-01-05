@@ -73,16 +73,16 @@ Let $f\in L^2(\Gamma, d\mu)$. We have:
 
 Applying the Cauchy-Schwartz inequality we get:
 \begin{equation*}\begin{array}{l l}
-\Big|\int_\Gamma k(x,y)\frac{f(y)}{v(y)}d\mu(y)\Big| &= 
-\Big(\int_\Gamma k(x,y)d\mu(y)\Big)^{\frac{1}{2}}
-\Big(\int_\Gamma k(x,y)\frac{f(y)^2}{v(y)^2} d\mu(y)\Big)^{\frac{1}{2}} \\
+\left|\int_\Gamma k(x,y)\frac{f(y)}{v(y)}d\mu(y)\right| &= 
+\left(\int_\Gamma k(x,y)d\mu(y)\right)^{\frac{1}{2}}
+\left(\int_\Gamma k(x,y)\frac{f(y)^2}{v(y)^2} d\mu(y)\right)^{\frac{1}{2}} \\
 &=v(x)(\int_\Gamma k(x,y)\frac{f(y)^2}{v(y)^2} d\mu(y))^{\frac{1}{2}}
 \end{array}\end{equation*}
 
 Hence:
-$$\langle Af,f \rangle \leq \int_\Gamma |f(x)|\Big(\int_\Gamma k(x,y)\frac{f(y)^2}{v(y)^2} d\mu(y)\Big)^{\frac{1}{2}}d\mu(x)$$
+$$\langle Af,f \rangle \leq \int_\Gamma |f(x)|\left(\int_\Gamma k(x,y)\frac{f(y)^2}{v(y)^2} d\mu(y)\right)^{\frac{1}{2}}d\mu(x)$$
 and by using the Cauchy-Schwartz inequality once again:
-$$\langle Af,f \rangle \leq ||f||\Big(\int_{\Gamma^2} \frac{k(x,y)}{v(y)^2}f(y)^2 d\mu(y)d\mu(x)\Big)^{\frac{1}{2}} = ||f||^2$$ by symmetry of the kernel which, in combination with \ref{positivityOfA}, also implies the positivity of $A$.
+$$\langle Af,f \rangle \leq ||f||\left(\int_{\Gamma^2} \frac{k(x,y)}{v(y)^2}f(y)^2 d\mu(y)d\mu(x)\right)^{\frac{1}{2}} = ||f||^2$$ by symmetry of the kernel which, in combination with \eqref{positivityOfA}, also implies the positivity of $A$.
 
 Plugging in $v$ for $f$ it follows immediately that the eigenvalue $1$ is actually obtained and $v$ is an eigenfunction.
 \end{proof}
@@ -128,11 +128,11 @@ For a fixed value of $t$ $D_t$ defines a distance on the set $\Gamma$ which is s
 Another property following from the summation over all possible paths is that this distance is very robust to noise perturbation (in contrast to the geodesic distance).
 
 \begin{theorem}[A Numerically Feasible Representation]
-$$D_t(x,y)=\bigg(\sum_{l\geq 0} \Big(\lambda_l^{l}(\psi_l(x) - \psi_l(y))\Big)^2 \bigg)^{\frac{1}{2}}$$
+$$D_t(x,y)=\left(\sum_{l\geq 0} \left(\lambda_l^{l}(\psi_l(x) - \psi_l(y))\right)^2 \right)^{\frac{1}{2}}$$
 \end{theorem}
 
 \begin{proof}
-$\{\phi_l\}_{l\geq 0}$ forming an orthonormal basis for $L^2(\Gamma, d\mu)$ implies that $\{\phi_l v\}_{l\geq 0}$ is an orthonormal basis for $L^2(\Gamma, d\mu/v)$ and thus for $x$ fixed \ref{spectralDecompositionOfP} may be seen as orthogonal expansion of the function $y \mapsto p_t(x,y)$ into the basis $\{\phi_l v\}_{l\geq 0}$.
+$\{\phi_l\}_{l\geq 0}$ forming an orthonormal basis for $L^2(\Gamma, d\mu)$ implies that $\{\phi_l v\}_{l\geq 0}$ is an orthonormal basis for $L^2(\Gamma, d\mu/v)$ and thus for $x$ fixed \eqref{spectralDecompositionOfP} may be seen as orthogonal expansion of the function $y \mapsto p_t(x,y)$ into the basis $\{\phi_l v\}_{l\geq 0}$.
 The coefficients are given by $\{\lambda_l^t \psi_l(x)\}_{l\geq 0}$. The statement follows directly using the Pythagorean theorem.
 \end{proof}
 
@@ -144,7 +144,7 @@ In order to calculate $D_t(x,y)$ to a preset accuracy $\delta>0$ with a finite n
 $$s_t(\delta)= \text{max}\{l\in\mathbf{N} : \lambda_l^t \>> \delta\lambda_1^t\}$$
 so that, up to relative precision $\delta$
 \begin{equation}\label{DtApproximation}
-D_t(x,y)=\bigg(\sum_{l=0}^{s_t(\delta)} \Big(\lambda_l^{l}(\psi_l(x) - \psi_l(y))\Big)^2 \bigg)^{\frac{1}{2}}.
+D_t(x,y)=\left(\sum_{l=0}^{s_t(\delta)} \left(\lambda_l^{l}(\psi_l(x) - \psi_l(y))\right)^2 \right)^{\frac{1}{2}}.
 \end{equation}
 
 \begin{definition}
@@ -157,5 +157,5 @@ $$\Psi_t(x)=\begin{pmatrix}
  \end{pmatrix}$$ be the family of diffusion maps. Each component of $\Psi_t(x)$ is termed diffusion coordinate.
 \end{definition}
 
-According to \ref{DtApproximation} diffusion maps embed data in a Euclidian space in such a way that the Euclidian distance equals the diffusion distance up to a relative error $\delta$.
+According to \eqref{DtApproximation} diffusion maps embed data in a Euclidian space in such a way that the Euclidian distance equals the diffusion distance up to a relative error $\delta$.
 
