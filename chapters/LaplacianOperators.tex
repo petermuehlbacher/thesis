@@ -81,7 +81,11 @@ we obtain the last result.
 
 
 
-\section{Asymptotic Expansion of Averaging Operators}
+\section{Infinitesimal Operators for a Family of Graph Laplacians}
+In this section we present the calculation of the infinitesimal generators for the different diffusion maps characterized by a parameter $\alpha$.\todo{define family of diffusion maps with parameter $\alpha$ like in \cite{Nadler2006113}}
+
+To start with we first show an asymptotic expansion for diffusion operators $G_\eps$.
+
 Let $k_\eps(x,y)$ be an isotropic kernel, i.e.:
 
 \begin{equation*}
@@ -94,9 +98,9 @@ where $h$ is assumed to have an exponential decay and let $G_\eps$ be the corres
 G_\eps f(x)=\frac{1}{\eps^\frac{d}{2}}\int_\Man k_\eps(x,y)f(y)dy.
 \end{equation*}
 
-The idea is that, using the previous theorems, for small $\eps$ integrating $f$ against the kernel on the manifold is approximately like integrating on the tangent space. On this space, the kernel is approximately symmetric and is \todo{more motivation}
+The idea is that, using the previous lemmata, for small $\eps$ integrating $f$ against the kernel on the manifold is approximately like integrating on the tangent space.
 
-\begin{theorem}
+\begin{theorem}\label{diffOpExpansion}
 Let $f\in C^3(\Man)$ and let $0 <\gamma<1/2$. Then we have, uniformly for all $x\in\Man$ at distance larger than $\eps^\gamma$ from $\partial\Man$,
 
 \begin{equation*}
@@ -149,8 +153,8 @@ h\left(\frac{||x-y||^2}{\eps} \right)=h\left(\frac{||u||^2}{\eps} \right) +\left
 Using \eqref{volumeComparison} to change the variable $s\mapsto u$ in the previous integral defining $G_\eps f(x)$ yields:
 
 \begin{equation*}\begin{aligned}
-\eps^\frac{d}{2} G_\eps f(x) =& \bigintsss\limits_{||u||<\eps^\gamma} \left(h\left(\frac{||u||^2}{\eps}\right)+\left(\frac{Q_{x,4}(u)+Q_{x,5}(u)}{\eps}\right)h'\left(\frac{||u||^2}{\eps}\right)\right)\\
-&\times \left(\tilde{f}(0)+ \sum\limits_{i=1}^d u_i \frac{\partial \tilde{f}}{\partial s_i}(0)+\frac{1}{2}\sum\limits_{i,j=1}^d u_i u_j \frac{\partial^2\tilde{f}}{\partial s_i\partial s_j}(0)+Q_{x,3}(u)\right)\\
+\eps^\frac{d}{2} G_\eps f(x) =& \bigintsss\limits_{||u||<\eps^\gamma} \left[h\left(\frac{||u||^2}{\eps}\right)+\left(\frac{Q_{x,4}(u)+Q_{x,5}(u)}{\eps}\right)h'\left(\frac{||u||^2}{\eps}\right)\right]\\
+&\times \left[\tilde{f}(0)+ \sum\limits_{i=1}^d u_i \frac{\partial \tilde{f}}{\partial s_i}(0)+\frac{1}{2}\sum\limits_{i,j=1}^d u_i u_j \frac{\partial^2\tilde{f}}{\partial s_i\partial s_j}(0)+Q_{x,3}(u)\right]\\
 &\times \left(1+Q_{x,2}(u)+Q_{x,3}(u)\right)du + \mathcal{O}\left(\eps^{\frac{d}{2}+2} \right).
 \end{aligned}\end{equation*}
 
@@ -158,7 +162,7 @@ This identity can be dramatically simplified by identifying odd functions and se
 
 \begin{equation*}\begin{aligned}
 \eps^\frac{d}{2} G_\eps f(x)=&\tilde{f}(0)\bigintsss_{\Real^d}h\left(\frac{||u||^2}{\eps} \right)du+\frac{1}{2}\left(\sum_{i=1}^d \frac{\partial^2\tilde{f}}{\partial s_i^2}(0) \right)\bigintsss_{\Real^d}u_1^2 h\left( \frac{||u||^2}{\eps} \right)du\\
-+&\tilde{f}(0)\bigintsss_{\Real^d}\left(\frac{Q_{x,4}(u)}{\eps}h'\left(\frac{||u||^2}{\eps}\right)+\tilde{Q}_{x,2}(u) h\left(\frac{||u||^2}{\eps} \right) \right)du+\mathcal{O}\left(\eps^{\frac{d}{2}+2} \right),
++&\tilde{f}(0)\bigintsss_{\Real^d}\left[\frac{Q_{x,4}(u)}{\eps}h'\left(\frac{||u||^2}{\eps}\right)+\tilde{Q}_{x,2}(u) h\left(\frac{||u||^2}{\eps} \right) \right]du+\mathcal{O}\left(\eps^{\frac{d}{2}+2} \right),
 \end{aligned}\end{equation*}
 
 where the domain of integration has been extended to $\Real^d$ (exponential decay of $h$). Changing the variable according to $u\mapsto \eps^\frac{1}{2}u$,
@@ -189,9 +193,59 @@ where
 Finally, the uniformity follows from the compactness and smoothness of $\Man$.
 \end{proof}
 
+\todo{add (reference to) convergence for $\partial\Man$}
 
+Suppose that the data set X consists of a Riemannian manifold with a density $p(x) = e^{-U(x)}$ and let $k_\eps(x, y)$ be a Gaussian kernel (which clearly satisfies the requirements for \ref{diffOpExpansion}.
 
+\begin{theorem}
+\todo{define the backward operator like in \cite{Nadler2006113}}
+The infinitesimal generator $\mathcal{H}_b\phi$ of the backward operator $T_b^{(\alpha)}\phi = \int_\Gamma \frac{k_\eps^{(\alpha)}(x,y)}{d_\eps^{(\alpha)}(x)} \phi(y)p(y)dy $ is $\Delta \phi - 2(1-\alpha)\nabla\phi \nabla U$.
+\end{theorem}
 
+\begin{proof}
+From \ref{diffOpExpansion} we see that\footnote{w.l.o.g. we assume $m_0=1$ and $m_2=2$} 
+
+\begin{equation*}
+p_\eps(x)=p(x)+\eps (\Delta p(x)+ \omega(x)p(x))+\mathcal{O}(\eps^2)
+\end{equation*}
+
+and consequently,
+
+\begin{equation*}
+p_\eps^{-\alpha}=p^{-\alpha}\left(1-\alpha\eps \left(\frac{\Delta p}{p}+\omega \right) \right)(1+\mathcal{O}(\eps^2)).
+\end{equation*}
+
+Let
+
+\begin{equation*}
+k_\eps^{(\alpha)}(x,y)=\frac{k_\eps(x,y)}{p_\eps^{\alpha}(x)p_\eps^{\alpha}(y)}
+\end{equation*}
+
+Then, the normalization factor $d_\eps^{(\alpha)}$ is given by
+
+\begin{equation*}
+d_\eps^{(\alpha)}(x)=\int_\Gamma k_\eps^{(\alpha)}(x,y)p(y)dy = 
+p_\eps^{-\alpha}(x)p_\eps^{1-\alpha}(x)\left[1+\eps \left((1-\alpha)\omega - \alpha\frac{\Delta p}{p}+\frac{\Delta p^{1-\alpha}}{p^{1-\alpha}(x)} \right) \right].
+\end{equation*}
+
+Therefore, the asymptotic expansion of the backward operator gives
+
+\begin{equation*}
+T_b^{(\alpha)}\phi = \int_\Gamma \frac{k_\eps^{(\alpha)}(x,y)}{d_\eps^{(\alpha)}(x)}\phi(y)p(y)dy = \phi(x) + \eps\left(\frac{\Delta(\phi p^{1-\alpha})}{p^{1-\alpha}}-\phi \frac{\Delta p^{1-\alpha}}{p^{1-\alpha}} \right)
+\end{equation*}
+
+and its infinitesimal generator is 
+
+\begin{equation*}
+\mathcal{H}_b\phi =
+lim_{\eps\rightarrow 0}\frac{T_b-I}{\eps}\phi =
+\frac{\Delta(\phi p^{1-\alpha})}{p^{1-\alpha}}-\phi \frac{\Delta p^{1-\alpha}}{p^{1-\alpha}}.
+\end{equation*}
+
+Plugging in $p=e^{-U}$ into the last equation gives the desired result.
+\end{proof}
+
+\todo{use this result (=convergence to FPO!) to show that the spectral properties can be used to examine SDEs}
 
 
 
