@@ -1,0 +1,76 @@
+\section{A Family of Anisotropic Diffusion Maps}\todo{define FPE, infinitesimal generators, SDEs, etc.}
+
+In this section we investigate the probability space $(X, \mathcal{A}, \mu)$ and therefore assume an infinite number of data points whose distribution is determined by the probability measure $\mu(x)=e^{-U(x)}$. $U$ may be interpreted as a potential function.\todo{elaborate on probability vs. potential}
+
+\subsection{Construction of the Family of Diffusions}
+Start with a Gaussian kernel $k_\eps(x,y)=e^{-\frac{||x-y||^2}{\eps}}$ and let $\alpha > 0$ being a parameter indexing this family of diffusions.
+
+We can estimate the local density $q_\eps$ by 
+
+\begin{definition}
+$$q_\eps(x)=\int_X k_\eps(x,y)d\mu(y)$$
+\end{definition}
+
+Now consider the family of kernels
+
+\begin{definition}
+$$k_\eps^{(\alpha)}(x,y)=\frac{k_\eps(x,y)}{q_\eps^\alpha(x)q_\eps^\alpha(y)} $$
+\end{definition}
+
+We compute the normalization factor\footnote{Note that this factor is the continuous analogue to definition \ref{def:normFunc}.} $d_\eps^{(\alpha)}$
+
+$$d_\eps^{(\alpha)}(x) = \int_X k_\eps^{(\alpha)}(x,y)d\mu(y)$$
+
+and define the forward and symmetric ($p^{(\alpha)}$ and $a^{(\alpha)}$ respectively) transition probability kernels:
+
+\begin{definition}\begin{equation*}\begin{aligned}
+&p^{(\alpha)}(x|y) = \frac{k_\eps^{(\alpha)}(x,y)}{d_\eps^{(\alpha)}(y)} = \text{Pr}\big(x(t+\eps)=x \, |\, x(t)=y\big)\\
+&a^{(\alpha)}(x|y) = \frac{k_\eps^{(\alpha)}(x,y)}{\sqrt{d_\eps^{(\alpha)}(x)d_\eps^{(\alpha)}(y)}}
+\end{aligned}\end{equation*}\end{definition}
+
+Now we define the  forward, backward and symmetric Chapman-Kolmogorov operators on functions defined on this probability space, as follows:
+
+\begin{definition}\begin{equation*}\begin{aligned}
+T_f^{(\alpha)}[\phi](x) &= \int_X p^{(\alpha)}(x|y)\phi(y)d\mu(y)\\
+T_b^{(\alpha)}[\phi](x) &= \int_X p^{(\alpha)}(y|x)\phi(y)d\mu(y)\\
+T_s^{(\alpha)}[\phi](x) &= \int_X a^{(\alpha)}(x,y)\phi(y)d\mu(y)
+\end{aligned}\end{equation*}\end{definition}
+
+If $\phi(x)$ is the probability of finding the system at location $x$ at time $t = 0$, then $T_f^{(\alpha)}[\phi]$ is the evolution of this probability to time $t = \eps$. Similarly, if $\psi(z)$ is some function on the space, then $T_b^{(\alpha)}[\psi](x)$ is the mean value of that function at time $\eps$ for a random walk that started at $x$, and so $\left(T_b^{(\alpha)}\right)^m[\psi](x)$ is the average value of the function at time $t = m\eps$.
+
+By definition, the operators $T_f^{(\alpha)}$ and $T_b^{(\alpha)}$ are adjoint under the inner product with weight $\mu$, while the operator $T_s^{(\alpha)}$ is self adjoint under this inner product.
+
+Moreover, just like in the discrete case, since $T_s^{(\alpha)}$ is obtained via conjugation of the kernel $p^{(\alpha)}$ all three operators share the same eigenvalues. The corresponding eigenfunctions can be found via
+conjugation by $\sqrt{d^{(\alpha)}_\eps}$; i.e.:
+If $T_s^{(\alpha)}\phi_s = \lambda\phi_s$, then the corresponding eigenfunctions for $T_f^{(\alpha)}$ and $T_b^{(\alpha)}$ are $\phi_f =
+\sqrt(q_\eps)\phi_s$ and $\phi_b = \frac{\phi_s}{\sqrt{q_\eps}}$, respectively.\todo{double check that section}
+
+%Since \sqrt{q_\eps} is the first eigenfunction with $\lambda_0 = 1$ of $T_s^{(\alpha)}$, the steady state of the forward operator is simply $q_\eps(x)$, while for the backward operator it is the uniform density, $\phi_b \equiv 1$.
+
+Furthermore, note that the eigenvalues and eigenvectors of the discrete Markov chain described in the previous section are discrete approximations to the eigenvalues and eigenfunctions of these continuous operators.
+
+\subsection{Transition to Diffusion Processes}
+Interpreting $\eps$ as a timestep\footnote{While in the case of a finite amount of data, $\eps$ must remain finite so as to have enough neighbors in a ball of radius $\mathcal{O}(\eps^\frac{1}{2})$ near each point $x$, as the number of samples goes to infinity, we can take smaller and smaller values of $\eps$.} and recalling the asymptotic expansions derived in the appendix it is instructive to look at the limit $\eps \rightarrow 0$. In this case, the transition probability densities of the Markov chain (that is continuous in space, but discrete in time) converge to those of a diffusion process, whose time evolution is described by a differential equation
+
+\begin{equation*}
+\frac{\partial \phi}{\partial t} = \mathcal{H}_f^{(\alpha)}\phi
+\end{equation*}
+
+where $\mathcal{H}_f^{(\alpha)}$ is the infinitesimal generator or propagator of the forward operator, defined as
+
+\begin{definition}\begin{equation*}
+\mathcal{H}_f^{(\alpha)}=\lim_{\eps\rightarrow 0}\frac{I-T_f^{(\alpha)}}{\eps}
+\end{equation*}\end{definition}
+
+Similarly, the inifinitesimal operator of the backward operator is given by
+
+\begin{definition}\begin{equation*}
+\mathcal{H}_b^{(\alpha)}=\lim_{\eps\rightarrow 0}\frac{T_b^{(\alpha)}-I}{\eps}
+\end{equation*}\end{definition}
+
+and as shown in the appendix (theorem \ref{thm:bFPO})
+
+\begin{equation*}
+\mathcal{H}_b^{(\alpha)}\psi = \Delta\psi - 2(1-\alpha)\nabla\psi\nabla U
+\end{equation*}
+\todo{add case for the fFPO and cases for $\alpha\in\{0,\frac{1}{2},1 \}$}
