@@ -24,26 +24,26 @@ $$d_\eps^{(\alpha)}(x) = \int_X k_\eps^{(\alpha)}(x,y)d\mu(y)$$
 and define the forward and symmetric ($p^{(\alpha)}$ and $a^{(\alpha)}$ respectively) transition probability kernels:
 
 \begin{definition}\begin{equation*}\begin{aligned}
-&p^{(\alpha)}(x|y) = \frac{k_\eps^{(\alpha)}(x,y)}{d_\eps^{(\alpha)}(y)} = \text{Pr}\big(x(t+\eps)=x \, |\, x(t)=y\big)\\
-&a^{(\alpha)}(x|y) = \frac{k_\eps^{(\alpha)}(x,y)}{\sqrt{d_\eps^{(\alpha)}(x)d_\eps^{(\alpha)}(y)}}
+&p_\eps^{(\alpha)}(x|y) = \frac{k_\eps^{(\alpha)}(x,y)}{d_\eps^{(\alpha)}(y)} = \text{Pr}\big(x(t+\eps)=x \, |\, x(t)=y\big)\\
+&a_\eps^{(\alpha)}(x|y) = \frac{k_\eps^{(\alpha)}(x,y)}{\sqrt{d_\eps^{(\alpha)}(x)d_\eps^{(\alpha)}(y)}}
 \end{aligned}\end{equation*}\end{definition}
 
 Now we define the  forward, backward and symmetric Chapman-Kolmogorov operators on functions defined on this probability space, as follows:
 
 \begin{definition}\begin{equation*}\begin{aligned}
-T_f^{(\alpha)}[\phi](x) &= \int_X p^{(\alpha)}(x|y)\phi(y)d\mu(y)\\
-T_b^{(\alpha)}[\phi](x) &= \int_X p^{(\alpha)}(y|x)\phi(y)d\mu(y)\\
-T_s^{(\alpha)}[\phi](x) &= \int_X a^{(\alpha)}(x,y)\phi(y)d\mu(y)
+T_{f,\eps}^{(\alpha)}[\phi](x) &= \int_X p_\eps^{(\alpha)}(x|y)\phi(y)d\mu(y)\\
+T_{b,\eps}^{(\alpha)}[\phi](x) &= \int_X p_\eps^{(\alpha)}(y|x)\phi(y)d\mu(y)\\
+T_{s,\eps}^{(\alpha)}[\phi](x) &= \int_X a_\eps^{(\alpha)}(x,y)\phi(y)d\mu(y)
 \end{aligned}\end{equation*}\end{definition}
 
-If $\phi(x)$ is the probability of finding the system at location $x$ at time $t = 0$, then $T_f^{(\alpha)}[\phi]$ is the evolution of this probability to time $t = \eps$. Similarly, if $\psi(z)$ is some function on the space, then $T_b^{(\alpha)}[\psi](x)$ is the mean value of that function at time $\eps$ for a random walk that started at $x$, and so $\left(T_b^{(\alpha)}\right)^m[\psi](x)$ is the average value of the function at time $t = m\eps$.
+If $\phi(x)$ is the probability of finding the system at location $x$ at time $t = 0$, then $T_{f,\eps}^{(\alpha)}[\phi]$ is the evolution of this probability to time $t = \eps$. Similarly, if $\psi(z)$ is some function on the space, then $T_{b,\eps}^{(\alpha)}[\psi](x)$ is the mean value of that function at time $\eps$ for a random walk that started at $x$, and so $\left(T_{b,\eps}^{(\alpha)}\right)^m[\psi](x)$ is the average value of the function at time $t = m\eps$.
 
-By definition, the operators $T_f^{(\alpha)}$ and $T_b^{(\alpha)}$ are adjoint under the inner product with weight $\mu$, while the operator $T_s^{(\alpha)}$ is self adjoint under this inner product.
+By definition, the operators $T_{f,\eps}^{(\alpha)}$ and $T_{b,\eps}^{(\alpha)}$ are adjoint under the inner product with weight $\mu$, while the operator $T_{s,\eps}^{(\alpha)}$ is self adjoint under this inner product.
 
-Moreover, just like in the discrete case, since $T_s^{(\alpha)}$ is obtained via conjugation of the kernel $p^{(\alpha)}$ all three operators share the same eigenvalues. The corresponding eigenfunctions can be found via
+Moreover, just like in the discrete case, since $T_{s,\eps}^{(\alpha)}$ is obtained via conjugation of the kernel $p^{(\alpha)}$ all three operators share the same eigenvalues. The corresponding eigenfunctions can be found via
 conjugation by $\sqrt{d^{(\alpha)}_\eps}$; i.e.:
-If $T_s^{(\alpha)}\phi_s = \lambda\phi_s$, then the corresponding eigenfunctions for $T_f^{(\alpha)}$ and $T_b^{(\alpha)}$ are $\phi_f =
-\sqrt(q_\eps)\phi_s$ and $\phi_b = \frac{\phi_s}{\sqrt{q_\eps}}$, respectively.\todo{double check that section}
+If $T_{s,\eps}^{(\alpha)}\phi_s = \lambda\phi_s$, then the corresponding eigenfunctions for $T_{f,\eps}^{(\alpha)}$ and $T_{b,\eps}^{(\alpha)}$ are $\phi_f =
+\sqrt{q_\eps}\phi_s$ and $\phi_b = \frac{\phi_s}{\sqrt{q_\eps}}$, respectively.\todo{double check that section}
 
 %Since \sqrt{q_\eps} is the first eigenfunction with $\lambda_0 = 1$ of $T_s^{(\alpha)}$, the steady state of the forward operator is simply $q_\eps(x)$, while for the backward operator it is the uniform density, $\phi_b \equiv 1$.
 
@@ -59,13 +59,13 @@ Interpreting $\eps$ as a timestep\footnote{While in the case of a finite amount 
 where $\mathcal{H}_f^{(\alpha)}$ is the infinitesimal generator or propagator of the forward operator, defined as
 
 \begin{definition}\begin{equation*}
-\mathcal{H}_f^{(\alpha)}=\lim_{\eps\rightarrow 0}\frac{I-T_f^{(\alpha)}}{\eps}
+\mathcal{H}_f^{(\alpha)}=\lim_{\eps\rightarrow 0}\frac{I-T_{f,\eps}^{(\alpha)}}{\eps}
 \end{equation*}\end{definition}
 
 Similarly, the inifinitesimal operator of the backward operator is given by
 
 \begin{definition}\begin{equation*}
-\mathcal{H}_b^{(\alpha)}=\lim_{\eps\rightarrow 0}\frac{T_b^{(\alpha)}-I}{\eps}
+\mathcal{H}_b^{(\alpha)}=\lim_{\eps\rightarrow 0}\frac{T_{b,\eps}^{(\alpha)}-I}{\eps}
 \end{equation*}\end{definition}
 
 and as shown in the appendix (theorem \ref{thm:bFPO})
