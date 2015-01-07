@@ -6,11 +6,9 @@ In the following we will deal with a compact manifold $\Man$ that is $C^\infty$.
 \end{enumerate}
 Notice that, locally, any function $f$ on $\Man$ may be viewed as $\tilde{f}$ of $(s_1,\dots,s_d)$ and thus we may write $\Delta f(x)=-\sum_{i=1}^d \frac{\partial^2\tilde{f}}{\partial s_i^2}(0,\dots,0)$, where $\Delta$ is the Laplace-Beltrami operator on $\Man$.
 
-\todo{This part is basically a citation of \cite{Coifman20065}.}
 
 
-
-\section{Comparison of the Geodesic and the Local Projection}
+\section{Comparison of the Geodesic and the Local Projection}\todo{The following is basically a citation of \cite{Coifman20065}.}
 In this section we will compute asymptotic expansions for the changes of variable $u\mapsto (s_1,\dots,s_d)$ and $u\mapsto y$.
 
 In the following, $Q_{x,m}(u)$ denotes a generic homogeneous polynomial of degree $m$ of the variable $u = (u_1,\dots,u_d)$, whose coefficient depends on $x$.
@@ -197,8 +195,7 @@ Finally, the uniformity follows from the compactness and smoothness of $\Man$.
 
 Suppose that the data set X consists of a Riemannian manifold with a density $p(x) = e^{-U(x)}$ and let $k_\eps(x, y)$ be a Gaussian kernel (which clearly satisfies the requirements for \ref{diffOpExpansion}.
 
-\begin{theorem}
-\todo{define the backward operator like in \cite{Nadler2006113}}
+\begin{theorem}\label{thm:bFPO}
 The infinitesimal generator $\mathcal{H}_b\phi$ of the backward operator $T_b^{(\alpha)}\phi = \int_\Gamma \frac{k_\eps^{(\alpha)}(x,y)}{d_\eps^{(\alpha)}(x)} \phi(y)p(y)dy $ is $\Delta \phi - 2(1-\alpha)\nabla\phi \nabla U$.
 \end{theorem}
 
@@ -244,10 +241,6 @@ lim_{\eps\rightarrow 0}\frac{T_b-I}{\eps}\phi =
 
 Plugging in $p=e^{-U}$ into the last equation gives the desired result.
 \end{proof}
-
-\todo{use this result (=convergence to FPO!) to show that the spectral properties can be used to examine SDEs}
-
-
 
 
 
