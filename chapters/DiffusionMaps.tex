@@ -8,7 +8,7 @@ Another problem is that for large $k$ the euclidian distance is no longer a mean
 Analogous to Riemannian manifolds (where metric tensors, inducing an inner product on the tangent space and a metric via the exponential map, define the manifold's geometry) we focus solely on local distances in order to recover intrinsic global structures.
 
 \subsubsection{A Dual Approach}
-From inverse problems in spectral geometry (e.g. ``Can One Hear the Shape of a Drum?'') it is known that much\footnote{the most famous example being Weyl's proof of $\#\{\lambda_k : \lambda_k < \lambda\} \approx \frac{\text{area}(\Gamma)}{2\pi}\lambda$ as $\lambda \rightarrow \infty$. (\cite{AnalysisOnManifolds})} of the geometry of a given set $\Gamma$ can be derived from the analysis of functions defined on $\Gamma$.
+From inverse problems in spectral geometry (e.g. ``Can One Hear the Shape of a Drum?'') it is known that much\footnote{the most famous example being Weyl's proof of $\#\{\lambda_k : \lambda_k < \lambda\} \approx \frac{\text{area}(\Gamma)}{2\pi}\lambda$ as $\lambda \rightarrow \infty$. (\cite{Canzani2013})} of the geometry of a given set $\Gamma$ can be derived from the analysis of functions defined on $\Gamma$.
 
 In this work eigenvalues and eigenfunctions of averaging operators, i.e., operators whose kernel corresponds to transition probabilities of a Markov process, will be studied in order to define a diffusion map which embeds the data into a Euclidian space where the Euclidian distance is just the diffusion metric.
 
@@ -47,7 +47,7 @@ $p(x,y)$ is no longer symmetric, but inherited the positivity and now satisfies 
 \int_\Gamma p(x,y)d\mu(y)=1
 \end{equation*}
 
-As a result the matrix $P:=(p(i,j))_{i,j}$ is stochastic and can be interpreted as the transition matrix of a homogeneous Markov process on $\Gamma$. In spectral graph theory $\mathbb{I}-P$ is commonly referred to as normalized, weighted graph Laplacian. This naming is justified in \ref{diffOpExpansion}\todo{better double check that claim in the footnote}\footnote{Let w.l.o.g. $m_0=1$ and $m_2=2$. Now set $L_\eps = \frac{\eps I - G_\eps}{\eps}$; for uniformly sampled data the potential term $\omega$ vanishes and $\lim_{\eps\rightarrow 0} L_\eps = \Delta$}.
+As a result the matrix $P:=(p(i,j))_{i,j}$ is stochastic and can be interpreted as the transition matrix of a homogeneous Markov process on $\Gamma$. In spectral graph theory $\mathbb{I}-P$ is commonly referred to as normalized, weighted graph Laplacian. This naming is justified in \ref{thm:diffOpExpansion}\todo{better double check that claim in the footnote}\footnote{Let w.l.o.g. $m_0=1$ and $m_2=2$. Now set $L_\eps = \frac{\eps I - G_\eps}{\eps}$; for uniformly sampled data the potential term $\omega$ vanishes and $\lim_{\eps\rightarrow 0} L_\eps = \Delta$}.
 
 To investigate the spectral properties of the corresponding integral operator $P$ defined by $Pf(x)=\int_\Gamma p(x,y)f(y)d\mu(y)$ it is beneficial to examine the symmetric, conjugated Operator $A$.
 
@@ -65,7 +65,7 @@ Moreover, its norm is $$||A||=1$$ and is taken by the eigenfunction $$Av=v.$$
 \end{theorem}
 \begin{proof}
 Let $f\in L^2(\Gamma, d\mu)$. We have:
-\begin{equation}\label{positivityOfA}
+\begin{equation}\label{eq:positivityOfA}
 \langle Af,f \rangle = \int_{\Gamma^2}k(x,y)\frac{f(x)}{v(x)}\frac{f(y)}{v(y)}d\mu(x)d\mu(y).
 \end{equation}
 
@@ -80,13 +80,13 @@ Applying the Cauchy-Schwartz inequality we get:
 Hence:
 $$\langle Af,f \rangle \leq \int_\Gamma |f(x)|\left(\int_\Gamma k(x,y)\frac{f(y)^2}{v(y)^2} d\mu(y)\right)^{\frac{1}{2}}d\mu(x)$$
 and by using the Cauchy-Schwartz inequality once again:
-$$\langle Af,f \rangle \leq ||f||\left(\int_{\Gamma^2} \frac{k(x,y)}{v(y)^2}f(y)^2 d\mu(y)d\mu(x)\right)^{\frac{1}{2}} = ||f||^2$$ by symmetry of the kernel which, in combination with \eqref{positivityOfA}, also implies the positivity of $A$.
+$$\langle Af,f \rangle \leq ||f||\left(\int_{\Gamma^2} \frac{k(x,y)}{v(y)^2}f(y)^2 d\mu(y)d\mu(x)\right)^{\frac{1}{2}} = ||f||^2$$ by symmetry of the kernel which, in combination with \eqref{eq:positivityOfA}, also implies the positivity of $A$.
 
 Plugging in $v$ for $f$ it follows immediately that the eigenvalue $1$ is actually obtained and $v$ is an eigenfunction.
 \end{proof}
 
 \begin{theorem}[Spectral Decomposition of the Diffusion Kernel]
-Assuming $A$ is compact\footnote{which is no constraint in practice since data is finite}\todo{try to generalize lemma 3.4 of \cite{FA_SCRIPT} (guess it won't work though)} and $A\phi_l=\lambda_l\phi_l$ we may write the kernel as
+Assuming $A$ is compact\footnote{which is no constraint in practice since data is finite}\todo{try to generalize lemma 3.4 of \cite{Teschl2014} (guess it won't work though)} and $A\phi_l=\lambda_l\phi_l$ we may write the kernel as
 \begin{equation*}
 a(x,y)=\sum_{l\geq 0}\lambda_l\phi_l(x)\phi_l(y)
 \end{equation*}
@@ -102,7 +102,7 @@ $$Af(x)=\int_\Gamma a(x,y)f(y)d\mu(y) = \sum_{l\geq 0}\lambda_l \int_\Gamma \phi
 which, by linearity of the integral and comparison of components\todo{``Komponentenvergleich'' auf Englisch finden}, is just what we were looking for.
 \end{proof}
 From definition of $a(x,y)$ we see that 
-\begin{equation}\label{spectralDecompositionOfP}
+\begin{equation}\label{eq:spectralDecompositionOfP}
 p(x,y)=\sum_{l\geq 0}\lambda_l\underbrace{\frac{\phi_l(x)}{v(x)}}_{=:\psi_l(x)}\phi_l(y)v(y)
 \end{equation}
  which enables us to efficiently compute $t$th powers $p_t$ of $p$.
@@ -130,7 +130,7 @@ $$D_t(x,y)=\left(\sum_{l\geq 0} \left(\lambda_l^{l}(\psi_l(x) - \psi_l(y))\right
 \end{theorem}
 
 \begin{proof}
-$\{\phi_l\}_{l\geq 0}$ forming an orthonormal basis for $L^2(\Gamma, d\mu)$ implies that $\{\phi_l v\}_{l\geq 0}$ is an orthonormal basis for $L^2(\Gamma, d\mu/v)$ and thus for $x$ fixed \eqref{spectralDecompositionOfP} may be seen as orthogonal expansion of the function $y \mapsto p_t(x,y)$ into the basis $\{\phi_l v\}_{l\geq 0}$.
+$\{\phi_l\}_{l\geq 0}$ forming an orthonormal basis for $L^2(\Gamma, d\mu)$ implies that $\{\phi_l v\}_{l\geq 0}$ is an orthonormal basis for $L^2(\Gamma, d\mu/v)$ and thus for $x$ fixed \eqref{eq:spectralDecompositionOfP} may be seen as orthogonal expansion of the function $y \mapsto p_t(x,y)$ into the basis $\{\phi_l v\}_{l\geq 0}$.
 The coefficients are given by $\{\lambda_l^t \psi_l(x)\}_{l\geq 0}$. The statement follows directly using the Pythagorean theorem.
 \end{proof}
 
@@ -141,7 +141,7 @@ One possible interpretation is that $D_t(x,y)$ measures the distance between bum
 In order to calculate $D_t(x,y)$ to a preset accuracy $\delta>0$ with a finite number of terms we set
 $$s_t(\delta)= \text{max}\{l\in\mathbf{N} : \lambda_l^t \>> \delta\lambda_1^t\}$$
 so that, up to relative precision $\delta$
-\begin{equation}\label{DtApproximation}
+\begin{equation}\label{eq:DtApproximation}
 D_t(x,y)=\left(\sum_{l=0}^{s_t(\delta)} \left(\lambda_l^{l}(\psi_l(x) - \psi_l(y))\right)^2 \right)^{\frac{1}{2}}.
 \end{equation}
 
@@ -155,5 +155,5 @@ $$\Psi_t(x)=\begin{pmatrix}
  \end{pmatrix}$$ be the family of diffusion maps. Each component of $\Psi_t(x)$ is termed diffusion coordinate.
 \end{definition}
 
-According to \eqref{DtApproximation} diffusion maps embed data in a Euclidian space in such a way that the Euclidian distance equals the diffusion distance up to a relative error $\delta$.
+According to \eqref{eq:DtApproximation} diffusion maps embed data in a Euclidian space in such a way that the Euclidian distance equals the diffusion distance up to a relative error $\delta$.
 

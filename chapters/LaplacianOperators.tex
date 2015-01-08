@@ -15,7 +15,7 @@ In the following, $Q_{x,m}(u)$ denotes a generic homogeneous polynomial of degre
 
 \begin{lemma}
 If $y\in\Man$ is in a Euclidean ball of radius $\eps^\frac{1}{2}$ around $x$, then, for $\eps$ sufficiently small, there exists:
-\begin{equation}\label{geodOrder3}
+\begin{equation}\label{eq:geodOrder3}
 s_i=u_i+Q_{x,3}(u)+\mathcal{O}(\eps^2)
 \end{equation}
 \end{lemma}
@@ -30,11 +30,11 @@ By definition of a geodesic, the covariant derivative of the velocity is zero, w
 
 \begin{lemma}
 Again, let $y\in\Man$ be in a Euclidean ball of radius $\eps^\frac{1}{2}$ around $x$; we have
-\begin{equation}\label{metricComparison}
+\begin{equation}\label{eq:metricComparison}
 ||x-y||^2=||u||^2+Q_{x,4}(u)+Q_{x,4}(u)+\mathcal{O}(\eps^3)
 \end{equation}
 and
-\begin{equation}\label{volumeComparison}
+\begin{equation}\label{eq:volumeComparison}
 det\left(\frac{dy}{du}\right)=1+Q_{x,2}(u)+Q_{x,3}(u)+\mathcal{O}(\eps^2).
 \end{equation}
 \end{lemma}
@@ -44,12 +44,12 @@ The submanifold is locally parameterized as $u\mapsto(u,g(u))$, where $g:\Real^d
 \begin{equation*}
 ||x-y||^2=||u||^2+\sum_{i=d+1}^n g_i(u)^2.
 \end{equation*}
-Using that, by definition, $g_i(0)=0$ and, as noted before, $\frac{\partial g}{\partial u_i}(0)=0$. As a consequence $g_i(u)=b_{i,x}(u)+c_{i,x}(u)+\mathcal{O}(\eps^2)$, where $b_{i,x}$ is the Hessian quadratic form of $g_i$ at $u=0$ and $c_{i,x}$ is the cubic term. This proves \eqref{metricComparison} with
+Using that, by definition, $g_i(0)=0$ and, as noted before, $\frac{\partial g}{\partial u_i}(0)=0$. As a consequence $g_i(u)=b_{i,x}(u)+c_{i,x}(u)+\mathcal{O}(\eps^2)$, where $b_{i,x}$ is the Hessian quadratic form of $g_i$ at $u=0$ and $c_{i,x}$ is the cubic term. This proves \eqref{eq:metricComparison} with
 \begin{equation*}
 Q_{x,4}(u)=\sum_{i=d+1}^n b_{i,x}^2(u) \text{ and } Q_{x,5}(u)=2\sum_{i=d+1}^n b_{i,x}(u)c_{i,x}(u).
 \end{equation*}
 
-To prove \eqref{volumeComparison}, observe that $\frac{\partial g}{\partial u_i}(0)=0$ implies that $\frac{\partial g}{\partial u_i}(0)=\tilde{b}_{i,x}(u)+\tilde{c}_{i,x}(u)+\mathcal{O}(\eps^\frac{3}{2})$, where $\tilde{b}_{i,x}(u)$ and $\tilde{c}_{i,x}(u)$ are the linear and quadratic terms in the Taylor expansion of $\frac{\partial g}{\partial u_i}(0)$ at $0$. We thus have:
+To prove \eqref{eq:volumeComparison}, observe that $\frac{\partial g}{\partial u_i}(0)=0$ implies that $\frac{\partial g}{\partial u_i}(0)=\tilde{b}_{i,x}(u)+\tilde{c}_{i,x}(u)+\mathcal{O}(\eps^\frac{3}{2})$, where $\tilde{b}_{i,x}(u)$ and $\tilde{c}_{i,x}(u)$ are the linear and quadratic terms in the Taylor expansion of $\frac{\partial g}{\partial u_i}(0)$ at $0$. We thus have:
 
 \begin{equation*}\begin{aligned}
 \frac{\partial y}{\partial u_i}(u)&=\left(v_i,\frac{\partial g}{\partial u_i}(u)\right), \text{ where } v_i=(0,\dots,0,1,0,\dots,0)\in\Real^d \\
@@ -80,7 +80,7 @@ we obtain the last result.
 
 
 \section{Infinitesimal Operators for a Family of Graph Laplacians}
-In this section we present the calculation of the infinitesimal generators for the different diffusion maps characterized by a parameter $\alpha$.\todo{define family of diffusion maps with parameter $\alpha$ like in \cite{Nadler2006113}}
+In this section we present the calculation of the infinitesimal generators for the different diffusion maps characterized by a parameter $\alpha$.
 
 To start with we first show an asymptotic expansion for diffusion operators $G_\eps$.
 
@@ -98,7 +98,7 @@ G_\eps f(x)=\frac{1}{\eps^\frac{d}{2}}\int_\Man k_\eps(x,y)f(y)dy.
 
 The idea is that, using the previous lemmata, for small $\eps$ integrating $f$ against the kernel on the manifold is approximately like integrating on the tangent space.
 
-\begin{theorem}\label{diffOpExpansion}
+\begin{theorem}\label{thm:diffOpExpansion}
 Let $f\in C^3(\Man)$ and let $0 <\gamma<1/2$. Then we have, uniformly for all $x\in\Man$ at distance larger than $\eps^\gamma$ from $\partial\Man$,
 
 \begin{equation*}
@@ -136,19 +136,19 @@ Now that things are localized around $x$, we can Taylor-expand the function $(s_
 f(y)=f(x)+\sum_{i=1}^d s_i \frac{\partial\tilde{f}}{\partial s_i}(0)+\frac{1}{2}\sum_{i,j=1}^d s_i s_j \frac{\partial^2\tilde{f}}{\partial s_i\partial s_j}(0)+Q_{x,3}(s_1,\dots,s_d)+\mathcal{O}(\eps^2),
 \end{equation*}
 
-where $\tilde{f}(s_1,\dots,s_d)=f(y(s_1,\dots,s_d))$. Invoking \eqref{geodOrder3}, we obtain
+where $\tilde{f}(s_1,\dots,s_d)=f(y(s_1,\dots,s_d))$. Invoking \eqref{eq:geodOrder3}, we obtain
 
 \begin{equation*}
 f(y)=\tilde{f}(0)+\sum_{i=1}^d u_i \frac{\partial \tilde{f}}{\partial s_i}(0)+\frac{1}{2}\sum_{i,j=1}^d u_i u_j \frac{\partial^2\tilde{f}}{\partial s_i\partial s_j}(0)+Q_{x,3}(u)+\mathcal{O}(\eps^2).
 \end{equation*}
 
-Likewise, because of \eqref{metricComparison}, the Taylor expansion of the kernel is
+Likewise, because of \eqref{eq:metricComparison}, the Taylor expansion of the kernel is
 
 \begin{equation*}
 h\left(\frac{||x-y||^2}{\eps} \right)=h\left(\frac{||u||^2}{\eps} \right) +\left(\frac{Q_{x,4}(u)+Q_{x,5}(u)}{\eps} \right) h'\left(\frac{||u||^2}{\eps} \right) + \mathcal{O}(\eps^2).
 \end{equation*}
 
-Using \eqref{volumeComparison} to change the variable $s\mapsto u$ in the previous integral defining $G_\eps f(x)$ yields:
+Using \eqref{eq:volumeComparison} to change the variable $s\mapsto u$ in the previous integral defining $G_\eps f(x)$ yields:
 
 \begin{equation*}\begin{aligned}
 \eps^\frac{d}{2} G_\eps f(x) =& \bigintsss\limits_{||u||<\eps^\gamma} \left[h\left(\frac{||u||^2}{\eps}\right)+\left(\frac{Q_{x,4}(u)+Q_{x,5}(u)}{\eps}\right)h'\left(\frac{||u||^2}{\eps}\right)\right]\\
@@ -191,16 +191,16 @@ where
 Finally, the uniformity follows from the compactness and smoothness of $\Man$.
 \end{proof}
 
-\todo{add (reference to) convergence for $\partial\Man$}
+One can also show the same result holds for all $x\in\Man$ at distance smaller than $\eps^\gamma$ from $\partial\Man$. For this proof we refer to \cite{Coifman20065} as this would go beyond the scope of the discussion.\\
 
-Suppose that the data set X consists of a Riemannian manifold with a density $p(x) = e^{-U(x)}$ and let $k_\eps(x, y)$ be a Gaussian kernel (which clearly satisfies the requirements for \ref{diffOpExpansion}.
+Suppose that the data set X consists of a Riemannian manifold with a density $p(x) = e^{-U(x)}$ and let $k_\eps(x, y)$ be a Gaussian kernel (which clearly satisfies the requirements for \ref{thm:diffOpExpansion}.
 
 \begin{theorem}\label{thm:bFPO}
-The infinitesimal generator $\mathcal{H}_b\phi$ of the backward operator $T_b^{(\alpha)}\phi = \int_\Gamma \frac{k_\eps^{(\alpha)}(x,y)}{d_\eps^{(\alpha)}(x)} \phi(y)p(y)dy $ is $\Delta \phi - 2(1-\alpha)\nabla\phi \nabla U$.
+The infinitesimal generator $\mathcal{H}_b\phi$ of the backward operator $T_{b,\eps}^{(\alpha)}\phi = \int_\Gamma \frac{k_\eps^{(\alpha)}(x,y)}{d_\eps^{(\alpha)}(x)} \phi(y)p(y)dy $ is $\Delta\phi - 2(1-\alpha)\nabla\phi\cdot\nabla U$.
 \end{theorem}
 
 \begin{proof}
-From \ref{diffOpExpansion} we see that\footnote{w.l.o.g. we assume $m_0=1$ and $m_2=2$} 
+From \ref{thm:diffOpExpansion} we see that\footnote{w.l.o.g. we assume $m_0=1$ and $m_2=2$} 
 
 \begin{equation*}
 p_\eps(x)=p(x)+\eps (\Delta p(x)+ \omega(x)p(x))+\mathcal{O}(\eps^2)
@@ -242,8 +242,7 @@ lim_{\eps\rightarrow 0}\frac{T_b-I}{\eps}\phi =
 Plugging in $p=e^{-U}$ into the last equation gives the desired result.
 \end{proof}
 
-
-
+Similarly, one can show that the infinitesimal generator $\mathcal{H}_f\psi$ of the forward operator $T_{f,\eps}^{(\alpha)}\psi$ is $\Delta\psi - 2\alpha\nabla\psi\cdot\nabla U + (2\alpha - 1)\psi(\nabla U\cdot\nabla U - \Delta U)$.
 
 
 
