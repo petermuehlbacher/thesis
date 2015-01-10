@@ -71,10 +71,10 @@ Let $f\in L^2(\Gamma, d\mu)$. We have:
 
 Applying the Cauchy-Schwartz inequality we get:
 \begin{equation*}\begin{array}{l l}
-\left|\int_\Gamma k(x,y)\frac{f(y)}{v(y)}d\mu(y)\right| &= 
-\left(\int_\Gamma k(x,y)d\mu(y)\right)^{\frac{1}{2}}
-\left(\int_\Gamma k(x,y)\frac{f(y)^2}{v(y)^2} d\mu(y)\right)^{\frac{1}{2}} \\
-&=v(x)(\int_\Gamma k(x,y)\frac{f(y)^2}{v(y)^2} d\mu(y))^{\frac{1}{2}}
+\left|\bigintsss_\Gamma k(x,y)\frac{f(y)}{v(y)}d\mu(y)\right| &= 
+\left(\bigintsss_\Gamma k(x,y)d\mu(y)\right)^{\frac{1}{2}}
+\left(\bigintsss_\Gamma k(x,y)\frac{f(y)^2}{v(y)^2} d\mu(y)\right)^{\frac{1}{2}} \\
+&=v(x)(\bigintsss_\Gamma k(x,y)\frac{f(y)^2}{v(y)^2} d\mu(y))^{\frac{1}{2}}
 \end{array}\end{equation*}
 
 Hence:
@@ -126,7 +126,7 @@ For a fixed value of $t$ $D_t$ defines a distance on the set $\Gamma$ which is s
 Another property following from the summation over all possible paths is that this distance is very robust to noise perturbation (in contrast to the geodesic distance).
 
 \begin{theorem}[A Numerically Feasible Representation]
-$$D_t(x,y)=\left(\sum_{l\geq 0} \left(\lambda_l^{l}(\psi_l(x) - \psi_l(y))\right)^2 \right)^{\frac{1}{2}}$$
+$$D_t(x,y)=\left(\sum_{l\geq 0} \left(\lambda_l^t(\psi_l(x) - \psi_l(y))\right)^2 \right)^{\frac{1}{2}}$$
 \end{theorem}
 
 \begin{proof}
@@ -142,7 +142,7 @@ In order to calculate $D_t(x,y)$ to a preset accuracy $\delta>0$ with a finite n
 $$s_t(\delta)= \text{max}\{l\in\mathbf{N} : \lambda_l^t \>> \delta\lambda_1^t\}$$
 so that, up to relative precision $\delta$
 \begin{equation}\label{eq:DtApproximation}
-D_t(x,y)=\left(\sum_{l=0}^{s_t(\delta)} \left(\lambda_l^{l}(\psi_l(x) - \psi_l(y))\right)^2 \right)^{\frac{1}{2}}.
+D_t(x,y)=\left(\sum_{l=0}^{s_t(\delta)} \left(\lambda_l^t(\psi_l(x) - \psi_l(y))\right)^2 \right)^{\frac{1}{2}}.
 \end{equation}
 
 \begin{definition}
