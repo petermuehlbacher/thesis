@@ -124,24 +124,33 @@ Integration of the SDE \eqref{eq:langevin} produces random paths whose distribut
 defined in $(x,t)\in \Omega\times\Real^+$ with reflecting boundary conditions on $\partial\Omega$, i.e. $\frac{\partial p}{\partial n} = 0$ where $\frac{\partial}{\partial n}$ is the derivative in the outward normal direction. Furthermore the initial condition is given by the Dirac-Delta function, i.e. $\lim_{t\rightarrow 0} p(x, t | x_0, 0) = \delta(x-x_0)$.
 
 \subsubsection{Eigenvalues of the Fokker-Planck Operator}
-As seen in the first chapter one can compute the eigenvalues $\lambda_{\eps, i}^{(\alpha)}$ of $T_{b,\eps}^{(\alpha)}$ with the help of $T_{s,\eps}^{(\alpha)}$. From definition of $\mathcal{H}_b^{(\alpha)}$, which is just the Fokker-Planck operator for $\alpha=\frac{1}{2}$, it follows that the eigenvalues $\mu_i^{(\alpha)}$ of $\mathcal{H}_b^{(\alpha)}$ can be written as
+As seen in the first chapter one can compute the eigenvalues $\lambda_{\eps, i}^{(\alpha)}$ of $T_{b,\eps}^{(\alpha)}$ by computing those of $T_{s,\eps}^{(\alpha)}$. From definition of $\mathcal{H}_f^{(\alpha)}$ and $\mathcal{H}_b^{(\alpha)}$ it follows that they share the eigenvalues $\mu_i^{(\alpha)}$ which can be written as
 
 \begin{equation*}
 \mu_i^{(\alpha)} = \lim_{\eps\rightarrow 0}\frac{\lambda_{\eps, i}^{(\alpha)}-1}{\eps} 
 \end{equation*}
 
-and are discrete again. From
+and are discrete again. Remember that for $\alpha=\frac{1}{2}$, $\mathcal{H}_f^{(\alpha)}$ and $\mathcal{H}_b^{(\alpha)}$ coincide and become the backward Fokker-Planck operator $\mathcal{L}^*$
 
+\begin{definition}\label{def:bFPO}
+$\mathcal{L}^*g = \frac{1}{\beta}\Delta g - \nabla g \cdot\nabla U$
+\end{definition}
+
+\begin{lemma}\label{thm:fFPadjointTobFP}
+$\mathcal{L}$ and $\mathcal{L}^*$ are adjoint under the standard inner product.
+\end{lemma}
+\begin{proof}
 \begin{equation*}\begin{aligned}
-\left\langle \mathcal{H}_b^{(\alpha)}[\phi],\phi \right\rangle &=
-\left\langle \lim_{\eps\rightarrow 0}\frac{T_{b,\eps}^{(\alpha)}-I}{\eps}[\phi], \phi \right\rangle\\
-&=\lim_{\eps\rightarrow 0} \frac{1}{\eps} \left( \left\langle T_{b,\eps}^{(\alpha)}[\phi], \phi \right\rangle - \left\langle \phi, \phi \right\rangle \right) \\
-&=\lim_{\eps\rightarrow 0} \frac{1}{\eps} \left( \left\langle \phi, T_{f,\eps}^{(\alpha)}[\phi] \right\rangle - \left\langle \phi, \phi \right\rangle \right) \\
-&=\left\langle \phi, \lim_{\eps\rightarrow 0}\frac{T_{f,\eps}^{(\alpha)}-I}{\eps}[\phi] \right\rangle
-= \left\langle \phi, \mathcal{H}_f^{(\alpha)}[\phi] \right\rangle
-\end{aligned}\end{equation*}\todo{maybe just mention that it is easy to see that they are adjoint instead of writing all that}
+\langle \mathcal{L}^*f, g \rangle
+&= \langle \frac{1}{\beta}\Delta f - \nabla g \cdot \nabla U, g \rangle\\
+&= \langle \frac{1}{\beta}\Delta f, g \rangle + \langle -\nabla f \cdot \nabla U, g \rangle \\
+&= \langle f, \frac{1}{\beta}\Delta g \rangle + \langle -\nabla f, g\cdot \nabla U \rangle \\
+&= \langle f, \frac{1}{\beta}\Delta g \rangle + \langle f, \text{div}(g\cdot \nabla U) \rangle \\
+&= \langle f, \frac{1}{\beta}\Delta g \rangle + \langle f, \nabla\cdot(g\cdot \nabla U) \rangle = \langle f, \mathcal{L}g \rangle
+\end{aligned}\end{equation*}
+\end{proof}
 
-we get that $\mathcal{H}_f^{(\alpha)}$ and $\mathcal{H}_b^{(\alpha)}$ are adjoint operators and thus share the same set of eigenvalues.
+$\mathcal{L}$ and $\mathcal{L}^*$ being adjoint implies that $\mu_i^{(\frac{1}{2})}$ are not only the eigenvalues of $\mathcal{L}$, but also of $\mathcal{L}^*$.
 
 \subsubsection{Computing the Transition Probability Density}
 % "sources": http://www.wisdom.weizmann.ac.il/~nadler/Publications/diffusion_map_MMS.pdf, http://howellkb.uah.edu/DEtext/Part7_BVProbs/SL.pdf p32f
@@ -150,8 +159,8 @@ For simplicity's sake the calculations will be done in one dimension for the for
 First of all, notice that in one dimension \eqref{eq:fokkerplanck} may be written as
 
 \begin{equation}\label{eq:fFP1D}\begin{aligned}
-\frac{\partial p}{\partial t} &= \frac{1}{\beta}\frac{\partial^2 p}{\partial x^2} + \frac{\partial}{\partial x}\left(p \frac{\partial U}{\partial x} \right)\\
-&=\underbrace{\frac{1}{\beta}}_{=:f(x)}\frac{\partial^2 p}{\partial x^2} + \frac{\partial p}{\partial x}\underbrace{\frac{\partial U}{\partial x}}_{=:g(x)} + p\underbrace{\frac{\partial^2 U}{\partial x^2}}_{=:h(x)}
+\frac{\partial p}{\partial t} &= \frac{\partial^2 p}{\partial x^2}\frac{1}{\beta} + \frac{\partial}{\partial x}\left(p \frac{\partial U}{\partial x} \right)\\
+&=\frac{\partial^2 p}{\partial x^2}\underbrace{\frac{1}{\beta}}_{=:f(x)} + \frac{\partial p}{\partial x}\underbrace{\frac{\partial U}{\partial x}}_{=:g(x)} + p\underbrace{\frac{\partial^2 U}{\partial x^2}}_{=:h(x)}
 \end{aligned}\end{equation}
 
 and the reflecting boundary conditions simplify to $p(a,t)=p(b,t)=0$.
@@ -192,24 +201,24 @@ and
 
 \eqref{eq:boltzmannEquilibrium} is not only the eigenfunction to the first eigenvalue $\lambda_0 = 0$ (plug it into \eqref{eq:fFP1D}), but, if normalized to absolute value $1$, is also known as the Boltzmann equilibrium distribution.
 
-We also get $X(a)=X(b)=0$. Let $\varphi_n$ and $\lambda_n$ be the eigenfunctions\footnote{There is no general analytic (exact) solution to Sturm-Liouville problems, but solving a Sturm-Liouville problem is a easier than solving the whole PDE.} and eigenvalues of $\tilde{L}$ and analogously $\frac{d}{dt}T_n(t)=\lambda_n T(t)$. Note that, as a Sturm-Liouville operator in $L^2([a,b], w(x)dx)$, $\tilde{L}$ is self-adjoint and its eigenfunctions $\varphi_n$ are orthogonal and maximal.\todo{find something to cite that this holds for SL problems with appropriate boundary conditions} Without loss of generality assume $\varphi_n$ to be orthonormal.
+We also get $X(a)=X(b)=0$. Let $\varphi_n$ and $\lambda_n$ be the eigenfunctions\footnote{There is no general analytic (exact) solution to Sturm-Liouville problems, but solving a Sturm-Liouville problem is a easier than solving the whole PDE.} and eigenvalues of $\mathcal{L}$ and analogously $\frac{d}{dt}T_n(t)=\lambda_n T(t)$. Note that, as a Sturm-Liouville operator in $L^2([a,b], w(x)dx)$, $\mathcal{L}$ is self-adjoint and its eigenfunctions $\varphi_n$ are orthogonal and maximal.\todo{find something to cite that this holds for SL problems with appropriate boundary conditions} Without loss of generality assume $\varphi_n$ to be orthonormal.
 
 Now we can write $T_n(t)$ as
 
 \begin{equation}\label{eq:eigenvalOfTn}
-T_n(t) = c_n e^{-\lambda_n t}
+T_n(t) = a_n e^{-\lambda_n t}
 \end{equation}
 
-for some constants $c_n$ that can be written as
+for some constants $a_n$ that can be written as
 
 \begin{equation*}
-c_n = \langle \varphi_n, p(\cdot, 0) \rangle_w
+a_n = \langle \varphi_n, p(\cdot, 0) \rangle_w
 \end{equation*}
 
-Note that $c_n$ is a generalized fourier series of the initial distribution $p(\cdot, 0)$, i.e.\todo{not in this case(?) since $p(x,0) = \delta(x_0-x)$ and the Dirac-Delta function is not a smooth function - any way to rescue this ansatz?} $p(\cdot, 0) = \sum_k c_k \varphi_n$ on $[a,b]$ because the set of orthonormal eigenfunctions forms a basis. It is chosen such that \eqref{eq:eigenvalOfTn} holds true for $t=0$. As a result
+Note that $a_n$ is a generalized fourier series of the initial distribution $p(\cdot, 0)$, i.e.\todo{not in this case(?) since $p(x,0) = \delta(x_0-x)$ and the Dirac-Delta function is not a smooth function - any way to rescue this ansatz?} $p(\cdot, 0) = \sum_k a_k \varphi_n$ on $[a,b]$ because the set of orthonormal eigenfunctions forms a basis. It is chosen such that \eqref{eq:eigenvalOfTn} holds true for $t=0$. As a result
 
 \begin{equation}\label{eq:decompositionProbDistributionfFPO}
-p(x,t) = \sum_{n\geq 0} c_n \varphi_n(x) e^{-\lambda_n t}
+p(x,t) = \sum_{n\geq 0} a_n \varphi_n(x) e^{-\lambda_n t}
 \end{equation}
 
 From that representation we get that, as $t\rightarrow \infty$, only the first term with $\lambda_0 = 0$ survives which justifies the naming of \eqref{eq:boltzmannEquilibrium} as Boltzmann \textit{equilibrium} distribution.\footnote{Under the assumption that the system is ergodic, the ergodic theorem tells us that the time average and the space average are the same almost everywhere; as such (and because $\varphi_0$ is continuous), regardless of the initial configuration $x_0\in\Omega$, $\lim_{t\rightarrow\infty} p(x,t | x_0, 0) = \varphi_0(x)$}.
@@ -217,7 +226,7 @@ From that representation we get that, as $t\rightarrow \infty$, only the first t
 Analogously, for every smooth $f\in L^2(\Omega)$, one can consider $g(x,t) = \mathbb{E}\{f(x(t)) | x(0) ) = x \}$ which satisfies the backward Fokker-Planck equation
 
 \begin{equation*}
-\frac{\partial g}{\partial t} = \frac{1}{\beta}\Delta g - \nabla g \cdot\nabla U =: \mathcal{L}^*g
+\frac{\partial g}{\partial t} = \frac{1}{\beta}\Delta g - \nabla g \cdot\nabla U = \mathcal{L}^*g
 \end{equation*}
 
 in the domain $(x,t)\in \Omega\times\Real^+$, with initial conditions
