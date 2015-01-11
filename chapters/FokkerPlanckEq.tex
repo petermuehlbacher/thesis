@@ -1,6 +1,6 @@
 \section{A Family of Anisotropic Diffusion Maps}\todo{define FPE, infinitesimal generators, SDEs, etc.}
 
-In this section we investigate the probability space $(X, \mathcal{A}, \mu)$ and therefore assume an infinite number of data points whose distribution is determined by the probability measure $\mu(x)=e^{-U(x)}$. $U$ may be interpreted as a potential function.\todo{elaborate on probability vs. potential}
+In this section we investigate the probability space $(\Omega, \mathcal{A}, \mu)$ and therefore assume an infinite number of data points whose distribution is determined by the probability measure $\mu(x)=e^{-U(x)}$. $U$ may be interpreted as a potential function. A motivation for the choice of $\mu$ will be given with \eqref{eq:decompositionProbDistributionfFPO}.
 
 \subsection{Construction of the Family of Diffusions}
 Start with a Gaussian kernel $k_\eps(x,y)=e^{-\frac{||x-y||^2}{\eps}}$ and let $\alpha > 0$ being a parameter indexing this family of diffusions.
@@ -8,10 +8,10 @@ Start with a Gaussian kernel $k_\eps(x,y)=e^{-\frac{||x-y||^2}{\eps}}$ and let $
 We can estimate the local density $q_\eps$ by 
 
 \begin{definition}
-$$q_\eps(x)=\int_X k_\eps(x,y)d\mu(y)$$
+$$q_\eps(x)=\int_\Omega k_\eps(x,y)d\mu(y)$$
 \end{definition}
 
-Now consider the family of kernels
+Now consider the family of (generally) anisotropic kernels
 
 \begin{definition}
 $$k_\eps^{(\alpha)}(x,y)=\frac{k_\eps(x,y)}{q_\eps^\alpha(x)q_\eps^\alpha(y)} $$
@@ -19,7 +19,7 @@ $$k_\eps^{(\alpha)}(x,y)=\frac{k_\eps(x,y)}{q_\eps^\alpha(x)q_\eps^\alpha(y)} $$
 
 We compute the normalization factor\footnote{Note that this factor is the continuous analogue to definition \ref{def:normFunc}.} $d_\eps^{(\alpha)}$
 
-$$d_\eps^{(\alpha)}(x) = \int_X k_\eps^{(\alpha)}(x,y)d\mu(y)$$
+$$d_\eps^{(\alpha)}(x) = \int_\Omega k_\eps^{(\alpha)}(x,y)d\mu(y)$$
 
 and define the forward and symmetric ($p^{(\alpha)}$ and $a^{(\alpha)}$ respectively) transition probability kernels:
 
@@ -31,9 +31,9 @@ and define the forward and symmetric ($p^{(\alpha)}$ and $a^{(\alpha)}$ respecti
 Now we define the  forward, backward and symmetric Chapman-Kolmogorov operators on functions defined on this probability space, as follows:
 
 \begin{definition}\begin{equation*}\begin{aligned}
-T_{f,\eps}^{(\alpha)}[\phi](x) &= \int_X p_\eps^{(\alpha)}(x|y)\phi(y)d\mu(y)\\
-T_{b,\eps}^{(\alpha)}[\phi](x) &= \int_X p_\eps^{(\alpha)}(y|x)\phi(y)d\mu(y)\\
-T_{s,\eps}^{(\alpha)}[\phi](x) &= \int_X a_\eps^{(\alpha)}(x,y)\phi(y)d\mu(y)
+T_{f,\eps}^{(\alpha)}[\phi](x) &= \int_\Omega p_\eps^{(\alpha)}(x|y)\phi(y)d\mu(y)\\
+T_{b,\eps}^{(\alpha)}[\phi](x) &= \int_\Omega p_\eps^{(\alpha)}(y|x)\phi(y)d\mu(y)\\
+T_{s,\eps}^{(\alpha)}[\phi](x) &= \int_\Omega a_\eps^{(\alpha)}(x,y)\phi(y)d\mu(y)
 \end{aligned}\end{equation*}\end{definition}
 
 If $\phi(x)$ is the probability of finding the system at location $x$ at time $t = 0$, then $T_{f,\eps}^{(\alpha)}[\phi]$ is the evolution of this probability to time $t = \eps$. Similarly, if $\psi(z)$ is some function on the space, then $T_{b,\eps}^{(\alpha)}[\psi](x)$ is the mean value of that function at time $\eps$ for a random walk that started at $x$, and so $\left(T_{b,\eps}^{(\alpha)}\right)^m[\psi](x)$ is the average value of the function at time $t = m\eps$.
@@ -58,13 +58,13 @@ Interpreting $\eps$ as a timestep\footnote{While in the case of a finite amount 
 
 where $\mathcal{H}_f^{(\alpha)}$ is the infinitesimal generator or propagator of the forward operator, defined as
 
-\begin{definition}\begin{equation*}
-\mathcal{H}_f^{(\alpha)}=\lim_{\eps\rightarrow 0}\frac{I-T_{f,\eps}^{(\alpha)}}{\eps}
+\begin{definition}\label{def:fFP}\begin{equation*}
+\mathcal{H}_f^{(\alpha)}=\lim_{\eps\rightarrow 0}\frac{T_{f,\eps}^{(\alpha)}-I}{\eps}
 \end{equation*}\end{definition}
 
 Similarly, the inifinitesimal operator of the backward operator is given by
 
-\begin{definition}\begin{equation*}
+\begin{definition}\label{def:bFP}\begin{equation*}
 \mathcal{H}_b^{(\alpha)}=\lim_{\eps\rightarrow 0}\frac{T_{b,\eps}^{(\alpha)}-I}{\eps}
 \end{equation*}\end{definition}
 
@@ -73,4 +73,180 @@ and as shown in the appendix (theorem \ref{thm:bFPO})
 \begin{equation*}
 \mathcal{H}_b^{(\alpha)}\psi = \Delta\psi - 2(1-\alpha)\nabla\psi\cdot\nabla U
 \end{equation*}
-\todo{add case for the fFPO and cases for $\alpha\in\{0,\frac{1}{2},1 \}$}
+
+as well as 
+
+\begin{equation*}
+\mathcal{H}_f^{(\alpha)}\psi = \Delta\psi - 2\alpha\nabla\psi\cdot\nabla U + (2\alpha - 1)\psi(\nabla U\cdot\nabla U - \Delta U)
+\end{equation*}
+
+Now we consider the following three choices of $\alpha$:
+
+\begin{enumerate}
+
+\item $\alpha = 0$:
+$$\mathcal{H}_f^{(0)}\phi = \Delta\phi - (e^U\Delta e^{-U})\phi$$
+Chosing $\alpha = 0$, ``ignoring'' the potential term (in the process of the normalization), we get the normalized graph Laplacian we already dealt with in the first chapter.
+
+\item $\alpha = \frac{1}{2}$:
+$$\mathcal{H}_f^{(\frac{1}{2})}\phi = \mathcal{H}_b^{(\frac{1}{2})}\phi = \Delta\phi - \nabla\phi\cdot\nabla U$$
+First, note that the infinitesimal operator of the forward and backward operators coincide and reduce to the backward Fokker-Planck equation with potential $U$.
+
+\item $\alpha = 1$:
+$$\mathcal{H}_b^{(1)}\phi = \Delta\phi$$
+The intention of chosing $\alpha = 1$ is to ``normalize the potential away'' which is successful as the resulting infinitesimal generator is the Laplace-Beltrami operator and thus the corresponding diffusion only captures the geometry of the data, totally neglecting the underlying density $e^{-U}$. As such, it is optimal for tasks like manifold reconstruction.
+
+\end{enumerate}
+
+\subsection{Investigation of Stochastic Processes}
+First we start with the definition of a stochastic process:
+
+\begin{definition}
+Let $T$ be an ordered set. A \textit{stochastic process} is a collection of random variables $X=\{X_t,t\in T\}$ where, for each $t\in T$, $X_t: E\rightarrow \Omega$ is a random variable from a measurable space $(E, \mathcal{F})$ to another one $(\Omega, \mathcal{G})$.
+\end{definition}
+
+From now on, let $T=\Real^+$ be the time and $\Omega=\Real^n$ the \textit{state space}.\footnote{It is important that $x\in\Omega$ does \textit{not} represent a particular particle, but a certain state of the entire system.} \\
+
+Now we want to investigate the time evolution of a system that is described by its state $x(t)$ at time $t$, $(x(t)\in\Omega)$ and is governed by the following stochastic differential equation
+
+\begin{equation}\label{eq:langevin}
+\dot{x}=-U(x)+\sqrt{2/\beta}\dot{w}
+\end{equation}
+
+where $U(x)$ is the potential energy of a state $x$, $\beta$ is some thermal factor which is inversely proportional to a given temperature and $w(t)$ is the Brownian motion in $n$ dimensions.
+
+Integration of the SDE \eqref{eq:langevin} produces random paths whose distribution defines a time dependent probability distributions on $\Omega$. To study the dynamics of the system, it is convenient to consider the time evolution of these probability distributions as it has been shown\todo{find source} that the transition probability density $p(x, t | x_0, 0)$ of finding the system at location $x$ at time $t$, given an initial location $x_0$ at time $t = 0$ satisfies the forward Fokker-Planck equation
+
+\begin{equation}\label{eq:fokkerplanck}
+\frac{\partial p}{\partial t} = \frac{1}{\beta}\Delta p + \nabla\cdot(p\nabla U) =: \mathcal{L}p
+\end{equation}
+
+defined in $(x,t)\in \Omega\times\Real^+$ with reflecting boundary conditions on $\partial\Omega$, i.e. $\frac{\partial p}{\partial n} = 0$ where $\frac{\partial}{\partial n}$ is the derivative in the outward normal direction. Furthermore the initial condition is given by the Dirac-Delta function, i.e. $\lim_{t\rightarrow 0} p(x, t | x_0, 0) = \delta(x-x_0)$.
+
+\subsubsection{Eigenvalues of the Fokker-Planck Operator}
+As seen in the first chapter one can compute the eigenvalues $\lambda_{\eps, i}^{(\alpha)}$ of $T_{b,\eps}^{(\alpha)}$ with the help of $T_{s,\eps}^{(\alpha)}$. From definition of $\mathcal{H}_b^{(\alpha)}$, which is just the Fokker-Planck operator for $\alpha=\frac{1}{2}$, it follows that the eigenvalues $\mu_i^{(\alpha)}$ of $\mathcal{H}_b^{(\alpha)}$ can be written as
+
+\begin{equation*}
+\mu_i^{(\alpha)} = \lim_{\eps\rightarrow 0}\frac{\lambda_{\eps, i}^{(\alpha)}-1}{\eps} 
+\end{equation*}
+
+and are discrete again. From
+
+\begin{equation*}\begin{aligned}
+\left\langle \mathcal{H}_b^{(\alpha)}[\phi],\phi \right\rangle &=
+\left\langle \lim_{\eps\rightarrow 0}\frac{T_{b,\eps}^{(\alpha)}-I}{\eps}[\phi], \phi \right\rangle\\
+&=\lim_{\eps\rightarrow 0} \frac{1}{\eps} \left( \left\langle T_{b,\eps}^{(\alpha)}[\phi], \phi \right\rangle - \left\langle \phi, \phi \right\rangle \right) \\
+&=\lim_{\eps\rightarrow 0} \frac{1}{\eps} \left( \left\langle \phi, T_{f,\eps}^{(\alpha)}[\phi] \right\rangle - \left\langle \phi, \phi \right\rangle \right) \\
+&=\left\langle \phi, \lim_{\eps\rightarrow 0}\frac{T_{f,\eps}^{(\alpha)}-I}{\eps}[\phi] \right\rangle
+= \left\langle \phi, \mathcal{H}_f^{(\alpha)}[\phi] \right\rangle
+\end{aligned}\end{equation*}\todo{maybe just mention that it is easy to see that they are adjoint instead of writing all that}
+
+we get that $\mathcal{H}_f^{(\alpha)}$ and $\mathcal{H}_b^{(\alpha)}$ are adjoint operators and thus share the same set of eigenvalues.
+
+\subsubsection{Computing the Transition Probability Density}
+% "sources": http://www.wisdom.weizmann.ac.il/~nadler/Publications/diffusion_map_MMS.pdf, http://howellkb.uah.edu/DEtext/Part7_BVProbs/SL.pdf p32f
+For simplicity's sake the calculations will be done in one dimension for the forward Fokker-Planck operator.
+
+First of all, notice that in one dimension \eqref{eq:fokkerplanck} may be written as
+
+\begin{equation}\label{eq:fFP1D}\begin{aligned}
+\frac{\partial p}{\partial t} &= \frac{1}{\beta}\frac{\partial^2 p}{\partial x^2} + \frac{\partial}{\partial x}\left(p \frac{\partial U}{\partial x} \right)\\
+&=\underbrace{\frac{1}{\beta}}_{=:f(x)}\frac{\partial^2 p}{\partial x^2} + \frac{\partial p}{\partial x}\underbrace{\frac{\partial U}{\partial x}}_{=:g(x)} + p\underbrace{\frac{\partial^2 U}{\partial x^2}}_{=:h(x)}
+\end{aligned}\end{equation}
+
+and the reflecting boundary conditions simplify to $p(a,t)=p(b,t)=0$.
+
+Now apply separation of variables $p(x,t)=X(x)T(t)$ and rewrite \eqref{eq:fFP1D} as
+
+\begin{equation}\label{eq:separationOfVariables}
+\frac{\mathcal{L}X(x)}{X(x)} = \frac{\frac{d}{dt}T(t)}{T(t)}.
+\end{equation}
+
+Since both sides of \eqref{eq:separationOfVariables} only depend on one variable each, they must be equal to a constant, i.e.
+
+\begin{equation}\label{eq:almostSturmLiouville}
+\mathcal{L}X(x) = \lambda X(x)
+\end{equation}
+and
+\begin{equation*}
+\frac{d}{dt}T(t)=\lambda T(t).
+\end{equation*}
+
+\eqref{eq:almostSturmLiouville} is \textit{almost} a regular Sturm-Liouville problem. In order get it into the form
+
+\begin{equation*}
+\frac{d}{dx}\left[\tilde{f}(x)\frac{d\varphi_n}{dx} \right] + \tilde{h}(x)\varphi_n = \tilde{f}(x)\frac{d^2 \varphi_n}{dx^2} + \frac{d \tilde{f}(x)}{dx}\frac{d \varphi_n}{dx}+ \tilde{h}(x)\varphi_n = -\lambda_n w(x)\varphi_n
+\end{equation*}
+
+we consider the space $L^2([a,b],w)$ with 
+
+\begin{equation}\label{eq:boltzmannEquilibrium}
+w = \frac{e^{\int \frac{g}{f}}}{f} = \beta e^{\beta U}
+\end{equation}
+
+and 
+
+\begin{equation*}
+\langle \phi, \psi \rangle_w = \int_a^b \phi(x)\psi(x)w(x)dx.
+\end{equation*}
+
+\eqref{eq:boltzmannEquilibrium} is not only the eigenfunction to the first eigenvalue $\lambda_0 = 0$ (plug it into \eqref{eq:fFP1D}), but, if normalized to absolute value $1$, is also known as the Boltzmann equilibrium distribution.
+
+We also get $X(a)=X(b)=0$. Let $\varphi_n$ and $\lambda_n$ be the eigenfunctions\footnote{There is no general analytic (exact) solution to Sturm-Liouville problems, but solving a Sturm-Liouville problem is a easier than solving the whole PDE.} and eigenvalues of $\tilde{L}$ and analogously $\frac{d}{dt}T_n(t)=\lambda_n T(t)$. Note that, as a Sturm-Liouville operator in $L^2([a,b], w(x)dx)$, $\tilde{L}$ is self-adjoint and its eigenfunctions $\varphi_n$ are orthogonal and maximal.\todo{find something to cite that this holds for SL problems with appropriate boundary conditions} Without loss of generality assume $\varphi_n$ to be orthonormal.
+
+Now we can write $T_n(t)$ as
+
+\begin{equation}\label{eq:eigenvalOfTn}
+T_n(t) = c_n e^{-\lambda_n t}
+\end{equation}
+
+for some constants $c_n$ that can be written as
+
+\begin{equation*}
+c_n = \langle \varphi_n, p(\cdot, 0) \rangle_w
+\end{equation*}
+
+Note that $c_n$ is a generalized fourier series of the initial distribution $p(\cdot, 0)$, i.e.\todo{not in this case(?) since $p(x,0) = \delta(x_0-x)$ and the Dirac-Delta function is not a smooth function - any way to rescue this ansatz?} $p(\cdot, 0) = \sum_k c_k \varphi_n$ on $[a,b]$ because the set of orthonormal eigenfunctions forms a basis. It is chosen such that \eqref{eq:eigenvalOfTn} holds true for $t=0$. As a result
+
+\begin{equation}\label{eq:decompositionProbDistributionfFPO}
+p(x,t) = \sum_{n\geq 0} c_n \varphi_n(x) e^{-\lambda_n t}
+\end{equation}
+
+From that representation we get that, as $t\rightarrow \infty$, only the first term with $\lambda_0 = 0$ survives which justifies the naming of \eqref{eq:boltzmannEquilibrium} as Boltzmann \textit{equilibrium} distribution.\footnote{Under the assumption that the system is ergodic, the ergodic theorem tells us that the time average and the space average are the same almost everywhere; as such (and because $\varphi_0$ is continuous), regardless of the initial configuration $x_0\in\Omega$, $\lim_{t\rightarrow\infty} p(x,t | x_0, 0) = \varphi_0(x)$}.
+
+Analogously, for every smooth $f\in L^2(\Omega)$, one can consider $g(x,t) = \mathbb{E}\{f(x(t)) | x(0) ) = x \}$ which satisfies the backward Fokker-Planck equation
+
+\begin{equation*}
+\frac{\partial g}{\partial t} = \frac{1}{\beta}\Delta g - \nabla g \cdot\nabla U =: \mathcal{L}^*g
+\end{equation*}
+
+in the domain $(x,t)\in \Omega\times\Real^+$, with initial conditions
+
+\begin{equation*}
+g(x,0)=f(x)
+\end{equation*}
+
+Remember that, as the adjoint\footnote{under the standard inner product} of $\mathcal{L}$, $\mathcal{L}^*$ shares the eigenvalues $\lambda_n$. It is easy to see that $\psi_0(x)=1$ is the eigenfunction corresponding to the eigenvalue $\lambda_0 = 0$.
+
+%Analogously\todo{einmal langsam durchrechnen} to the previous part it can be shown that
+
+%\begin{equation*}
+%g(x,t) = \sum_{n\geq 0} b_n e^{-\lambda_n t}\psi_n(x)
+%\end{equation*}
+
+%with 
+
+%\begin{equation*}
+%b_n = 
+%\end{equation*}
+
+
+
+
+
+
+
+
+
+
+
