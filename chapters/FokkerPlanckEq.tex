@@ -1,4 +1,4 @@
-\section{A Family of Anisotropic Diffusion Maps}\todo{define FPE, infinitesimal generators, SDEs, etc.}
+\section{A Family of Anisotropic Diffusion Maps}
 
 In this section we investigate the probability space $(\Omega, \mathcal{A}, \mu)$ and therefore assume an infinite number of data points whose distribution is determined by the probability measure $\mu(x)=e^{-U(x)}$. $U$ may be interpreted as a potential function. A motivation for the choice of $\mu$ will be given with \eqref{eq:decompositionProbDistributionfFPO}.
 
@@ -153,7 +153,7 @@ $\mathcal{L}$ and $\mathcal{L}^*$ are adjoint under the standard inner product.
 $\mathcal{L}$ and $\mathcal{L}^*$ being adjoint implies that $\mu_i^{(\frac{1}{2})}$ are not only the eigenvalues of $\mathcal{L}$, but also of $\mathcal{L}^*$.
 
 \subsubsection{Computing the Transition Probability Density}
-% "sources": http://www.wisdom.weizmann.ac.il/~nadler/Publications/diffusion_map_MMS.pdf, http://howellkb.uah.edu/DEtext/Part7_BVProbs/SL.pdf p32f
+% sources: http://www.wisdom.weizmann.ac.il/~nadler/Publications/diffusion_map_MMS.pdf, http://en.wikipedia.org/wiki/Sturm%E2%80%93Liouville_theory#Application_to_PDEs, http://howellkb.uah.edu/DEtext/Part7_BVProbs/SL.pdf p32f
 For simplicity's sake the calculations will be done in one dimension for the forward Fokker-Planck operator.
 
 First of all, notice that in one dimension \eqref{eq:fokkerplanck} may be written as
@@ -183,9 +183,9 @@ and
 
 \eqref{eq:almostSturmLiouville} is \textit{almost} a regular Sturm-Liouville problem. In order get it into the form
 
-\begin{equation*}
-\frac{d}{dx}\left[\tilde{f}(x)\frac{d\varphi_n}{dx} \right] + \tilde{h}(x)\varphi_n = \tilde{f}(x)\frac{d^2 \varphi_n}{dx^2} + \frac{d \tilde{f}(x)}{dx}\frac{d \varphi_n}{dx}+ \tilde{h}(x)\varphi_n = -\lambda_n w(x)\varphi_n
-\end{equation*}
+\begin{equation}\label{eq:regularSLproblem}
+\frac{d}{dx}\left[\tilde{f}(x)\frac{d\varphi_n}{dx} \right] + \tilde{h}(x)\varphi_n = \tilde{f}(x)\frac{d^2 \varphi_n}{dx^2} + \frac{d \tilde{f}(x)}{dx}\frac{d \varphi_n}{dx}+ \tilde{h}(x)\varphi_n = -\tilde{\lambda}_n w(x)\varphi_n
+\end{equation}
 
 we consider the space $L^2([a,b],w)$ with 
 
@@ -199,6 +199,8 @@ and
 \langle \phi, \psi \rangle_w = \int_a^b \phi(x)\psi(x)w(x)dx.
 \end{equation*}
 
+Note that there is no discrepancy with \eqref{eq:regularSLproblem} when dealing $+\lambda_n$ instead of $-\tilde{\lambda_n}$ as $\tilde{\lambda_n}$ is required to be non-negative and our $\lambda_n$ are non-positive.
+
 \eqref{eq:boltzmannEquilibrium} is not only the eigenfunction to the first eigenvalue $\lambda_0 = 0$ (plug it into \eqref{eq:fFP1D}), but, if normalized to absolute value $1$, is also known as the Boltzmann equilibrium distribution.
 
 We also get $X(a)=X(b)=0$. Let $\varphi_n$ and $\lambda_n$ be the eigenfunctions\footnote{There is no general analytic (exact) solution to Sturm-Liouville problems, but solving a Sturm-Liouville problem is a easier than solving the whole PDE.} and eigenvalues of $\mathcal{L}$ and analogously $\frac{d}{dt}T_n(t)=\lambda_n T(t)$. Note that, as a Sturm-Liouville operator in $L^2([a,b], w(x)dx)$, $\mathcal{L}$ is self-adjoint and its eigenfunctions $\varphi_n$ are orthogonal and maximal.\todo{find something to cite that this holds for SL problems with appropriate boundary conditions} Without loss of generality assume $\varphi_n$ to be orthonormal.
@@ -206,7 +208,7 @@ We also get $X(a)=X(b)=0$. Let $\varphi_n$ and $\lambda_n$ be the eigenfunctions
 Now we can write $T_n(t)$ as
 
 \begin{equation}\label{eq:eigenvalOfTn}
-T_n(t) = a_n e^{-\lambda_n t}
+T_n(t) = a_n e^{\lambda_n t}
 \end{equation}
 
 for some constants $a_n$ that can be written as
@@ -218,10 +220,10 @@ a_n = \langle \varphi_n, p(\cdot, 0) \rangle_w
 Note that $a_n$ is a generalized fourier series of the initial distribution $p(\cdot, 0)$, i.e.\todo{not in this case(?) since $p(x,0) = \delta(x_0-x)$ and the Dirac-Delta function is not a smooth function - any way to rescue this ansatz?} $p(\cdot, 0) = \sum_k a_k \varphi_n$ on $[a,b]$ because the set of orthonormal eigenfunctions forms a basis. It is chosen such that \eqref{eq:eigenvalOfTn} holds true for $t=0$. As a result
 
 \begin{equation}\label{eq:decompositionProbDistributionfFPO}
-p(x,t) = \sum_{n\geq 0} a_n \varphi_n(x) e^{-\lambda_n t}
+p(x,t) = \sum_{n\geq 0} a_n \varphi_n(x) e^{\lambda_n t}
 \end{equation}
 
-From that representation we get that, as $t\rightarrow \infty$, only the first term with $\lambda_0 = 0$ survives which justifies the naming of \eqref{eq:boltzmannEquilibrium} as Boltzmann \textit{equilibrium} distribution.\footnote{Under the assumption that the system is ergodic, the ergodic theorem tells us that the time average and the space average are the same almost everywhere; as such (and because $\varphi_0$ is continuous), regardless of the initial configuration $x_0\in\Omega$, $\lim_{t\rightarrow\infty} p(x,t | x_0, 0) = \varphi_0(x)$}.
+From that representation we get that, as $t\rightarrow \infty$, only the first term with $\lambda_0 = 0$ survives, which justifies the naming of \eqref{eq:boltzmannEquilibrium} as Boltzmann \textit{equilibrium} distribution.\footnote{Under the assumption that the system is ergodic, the ergodic theorem tells us that the time average and the space average are the same almost everywhere; as such (and because $\varphi_0$ is continuous), regardless of the initial configuration $x_0\in\Omega$, $\lim_{t\rightarrow\infty} p(x,t | x_0, 0) = \varphi_0(x)$.}
 
 Analogously, for every smooth $f\in L^2(\Omega)$, one can consider $g(x,t) = \mathbb{E}\{f(x(t)) | x(0) ) = x \}$ which satisfies the backward Fokker-Planck equation
 
@@ -232,7 +234,7 @@ Analogously, for every smooth $f\in L^2(\Omega)$, one can consider $g(x,t) = \ma
 in the domain $(x,t)\in \Omega\times\Real^+$, with initial conditions
 
 \begin{equation*}
-g(x,0)=f(x)
+g(x,0)=f(x).
 \end{equation*}
 
 Remember that, as the adjoint\footnote{under the standard inner product} of $\mathcal{L}$, $\mathcal{L}^*$ shares the eigenvalues $\lambda_n$. It is easy to see that $\psi_0(x)=1$ is the eigenfunction corresponding to the eigenvalue $\lambda_0 = 0$.
@@ -240,7 +242,7 @@ Remember that, as the adjoint\footnote{under the standard inner product} of $\ma
 %Analogously\todo{einmal langsam durchrechnen} to the previous part it can be shown that
 
 %\begin{equation*}
-%g(x,t) = \sum_{n\geq 0} b_n e^{-\lambda_n t}\psi_n(x)
+%g(x,t) = \sum_{n\geq 0} b_n e^{\lambda_n t}\psi_n(x)
 %\end{equation*}
 
 %with 
