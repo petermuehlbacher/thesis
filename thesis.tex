@@ -29,7 +29,9 @@
 \maketitle
 
 \begin{abstract}
-% das Beste kommt zum Schluss
+In \autoref{chap:diffusionMaps} a new distance, which involves summing over all possible paths between two points and is thus very robust to noise perturbation, will be introduced. In order to efficiently compute this distance up to a given relative error $\delta$, its kernel will be decomposed over an orthonormal basis of eigenfunctions of the corresponding integral operator. It will then be shown that this procedure can be used to find a meaningful embedding of data in the Euclidian space.
+
+In \autoref{chap:fokkerPlanck} density and time will also be taken into account which leads to diffusion processes and their connection to stochastic processes. This can also be used to study the long-time behaviour of important stochastic systems by investigating their lower dimensional representations.
 \end{abstract}
 
 \tableofcontents
@@ -37,10 +39,10 @@
 \chapter*{Introduction}
 \input{chapters/introduction}
 
-\chapter{Diffusion Maps}
+\chapter{Diffusion Maps}\label{chap:diffusionMaps}
 \input{chapters/DiffusionMaps}
 
-\chapter{Connection with the Fokker-Planck Equation}
+\chapter{Connection with the Fokker-Planck Equation}\label{chap:fokkerPlanck}
 \input{chapters/FokkerPlanckEq}
 
 \appendix
