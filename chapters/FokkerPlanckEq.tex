@@ -1,20 +1,20 @@
 \section{A Family of Anisotropic Diffusion Maps}
 
-In this section we investigate the probability space $(\Omega, \mathcal{A}, \mu)$ and therefore assume an infinite number of data points whose distribution is determined by the probability measure $\mu(x)=e^{-U(x)}$. $U$ may be interpreted as a potential function. A motivation for the choice of $\mu$ will be given with \eqref{eq:decompositionProbDistributionfFPO}.
+In this section we investigate the probability space $(\Omega, \mathcal{A}, \mu)$ and therefore assume an infinite number of data points whose distribution is determined by the probability measure $\mu(x)=e^{-U(x)}dx$. $U$ may be interpreted as a potential function. A motivation for the choice of $\mu$ will be given with \eqref{eq:decompositionProbDistributionfFPO}.
 
 \subsection{Construction of the Family of Diffusions}
-Start with a Gaussian kernel $k_\eps(x,y)=e^{-\frac{||x-y||^2}{\eps}}$ and let $\alpha > 0$ being a parameter indexing this family of diffusions.
+Start with a Gaussian kernel $k_\eps(x,y)=e^{-\frac{\|x-y\|^2}{\eps}}$ and let $\alpha > 0$ being a parameter indexing this family of diffusions.
 
 We can estimate the local density $q_\eps$ by 
 
 \begin{definition}
-$$q_\eps(x)=\int_\Omega k_\eps(x,y)d\mu(y)$$
+$$q_\eps(x)=\int_\Omega k_\eps(x,y)d\mu(y).$$
 \end{definition}
 
 Now consider the family of (generally) anisotropic kernels
 
 \begin{definition}
-$$k_\eps^{(\alpha)}(x,y)=\frac{k_\eps(x,y)}{q_\eps^\alpha(x)q_\eps^\alpha(y)} $$
+$$k_\eps^{(\alpha)}(x,y)=\frac{k_\eps(x,y)}{q_\eps^\alpha(x)q_\eps^\alpha(y)}.$$
 \end{definition}
 
 We compute the normalization factor\footnote{Note that this factor is the continuous analogue to definition \ref{def:normFunc}.} $d_\eps^{(\alpha)}$
@@ -113,7 +113,7 @@ Now we want to investigate the time evolution of a system that is described by i
 \dot{x}=-U(x)+\sqrt{2/\beta}\dot{w}
 \end{equation}
 
-where $U(x)$ is the potential energy of a state $x$, $\beta$ is some thermal factor which is inversely proportional to a given temperature and $w(t)$ is the Brownian motion in $n$ dimensions.
+where $U(x)$ is the potential energy of a state $x$, $\beta$ is some thermal factor which is inversely proportional to a given temperature and $w(t)$ is the Brownian motion in $n$ dimensions\todo{define it}.
 
 Integration of the SDE \eqref{eq:langevin} produces random paths whose distribution defines a time dependent probability distributions on $\Omega$. To study the dynamics of the system, it is convenient to consider the time evolution of these probability distributions as it has been shown\todo{find source} that the transition probability density $p(x, t | x_0, 0)$ of finding the system at location $x$ at time $t$, given an initial location $x_0$ at time $t = 0$ satisfies the forward Fokker-Planck equation
 
@@ -193,7 +193,7 @@ we consider the space $L^2([a,b],w)$ with
 w = \frac{e^{\int \frac{g}{f}}}{f} = \beta e^{\beta U}
 \end{equation}
 
-and 
+for $f$ and $g$ as defined in \eqref{eq:fFP1D} and 
 
 \begin{equation*}
 \langle \phi, \psi \rangle_w = \int_a^b \phi(x)\psi(x)w(x)dx.
@@ -214,13 +214,13 @@ T_n(t) = a_n e^{\lambda_n t}
 for some constants $a_n$ that can be written as
 
 \begin{equation*}
-a_n = \langle \varphi_n, p(\cdot, 0) \rangle_w
+a_n = \langle \varphi_n, p(\cdot, 0) \rangle_w.
 \end{equation*}
 
-Note that $a_n$ is a generalized fourier series of the initial distribution $p(\cdot, 0)$, i.e. $p(\cdot, 0) = \sum_k a_k \varphi_n$ on $[a,b]$ because the set of orthonormal eigenfunctions forms a basis. It is chosen such that \eqref{eq:eigenvalOfTn} holds true for $t=0$. As a result
+Note that $a_n$ is a generalized Fourier series of the initial distribution $p(\cdot, 0)$, i.e. $p(\cdot, 0) = \sum_k a_k \varphi_n$ on $[a,b]$ because the set of orthonormal eigenfunctions forms a basis. It is chosen such that \eqref{eq:eigenvalOfTn} holds true for $t=0$. As a result
 
 \begin{equation}\label{eq:decompositionProbDistributionfFPO}
-p(x,t) = \sum_{n\geq 0} a_n e^{\lambda_n t} \varphi_n(x)
+p(x,t) = \sum_{n\geq 0} a_n e^{\lambda_n t} \varphi_n(x).
 \end{equation}
 
 From that representation we get that, as $t\rightarrow \infty$, only the first term with $\lambda_0 = 0$ survives, which justifies the naming of \eqref{eq:boltzmannEquilibrium} as Boltzmann \textit{equilibrium} distribution.\footnote{Under the assumption that the system is ergodic, the ergodic theorem tells us that the time average and the space average are the same almost everywhere; as such (and because $\varphi_0$ is continuous), regardless of the initial configuration $x_0\in\Omega$, $\lim_{t\rightarrow\infty} p(x,t | x_0, 0) = \varphi_0(x)$.}
@@ -239,7 +239,7 @@ Remember that, as the adjoint\footnote{under the standard inner product} of $\ma
 \end{equation}
 is the eigenfunction corresponding to the eigenvalue $\lambda_0 = 0$.
 
-Analogously to the previous part it can be shown that
+Analogous to the previous part it can be shown that
 
 \begin{equation*}
 g(x,t) = \sum_{n\geq 0} b_n e^{\lambda_n t}\psi_n(x)
@@ -289,7 +289,7 @@ $\mathcal{L}e^{-\beta U}g = e^{-\beta U}\mathcal{L}^*g$
 \end{lemma}
 
 \begin{proof}
-For simplicity's sake the one dimensional case will be proven. For this proof let $f' = \frac{\partial f}{\partial x}$.
+For simplicity's sake only the one-dimensional case will be proven. For this proof let $f' = \frac{\partial f}{\partial x}$.
 
 \begin{equation*}\begin{aligned}
 \mathcal{L}e^{-\beta U}g &= \frac{1}{\beta}(e^{-\beta U}g)'' + \left(e^{-\beta U}g\,U' \right)'\\
@@ -314,7 +314,7 @@ Similar to definition \ref{def:diffusionDist} we define the diffusion distance a
 
 \begin{definition}
 \begin{equation*}
-D_t^2(x_0,x_1) = ||p_{x_0}(\cdot, t) - p_{x_1}(\cdot, t) ||_{L^2(\Omega, w)}^2.
+D_t^2(x_0,x_1) = \|p_{x_0}(\cdot, t) - p_{x_1}(\cdot, t) \|_{L^2(\Omega, w)}^2.
 \end{equation*}
 \end{definition}
 
@@ -326,7 +326,7 @@ D_t^2(x_0,x_1) = \sum_{j\geq 1} e^{2\lambda_j t} (\psi_j(x_0)-\psi_j(x_1))^2.
 Using \eqref{eq:decompositionProbDistributionfFPO}, \eqref{eq:connectionBetweenEigenfunctions}, \eqref{eq:alternativeReprForCoefficients}, \eqref{eq:firstEigenfunctionConstant} and \eqref{eq:biorthonormality} we get
 
 \begin{equation*}\begin{aligned}
-||p_{x_0}(\cdot, t) - p_{x_1}(\cdot, t) ||_{L^2(\Omega, w)}^2 &=
+\|p_{x_0}(\cdot, t) - p_{x_1}(\cdot, t) \|_{L^2(\Omega, w)}^2 &=
 \int_\Omega \left( \sum_{n\geq 0} e^{\lambda_n t}(\psi_n(x_0)-\psi_n(x_1)) \varphi_n(x)\right)^2\frac{1}{\varphi_0(x)}dx\\
 &= \sum_{n\geq 1} \int_\Omega \frac{\varphi_n(x)^2}{\varphi_0(x)}dx \left(e^{\lambda_n t}(\psi_n(x_0)-\psi_n(x_1))\right)^2\\
 &= \sum_{n\geq 1} \int_\Omega \varphi_n(x)\psi_n(x)dx \left(e^{\lambda_n t}(\psi_n(x_0)-\psi_n(x_1))\right)^2\\
@@ -349,6 +349,7 @@ Now, again analogously to \autoref{chap:diffusionMaps}, we define the $k$-dimens
 
 \end{definition}
 
+\todo{write proper ending}
 
 
 
