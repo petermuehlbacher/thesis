@@ -43,7 +43,7 @@ By definition, the operators $T_{f,\eps}^{(\alpha)}$ and $T_{b,\eps}^{(\alpha)}$
 Moreover, just like in the discrete case, since $T_{s,\eps}^{(\alpha)}$ is obtained via conjugation of the kernel $p^{(\alpha)}$ all three operators share the same eigenvalues. The corresponding eigenfunctions can be found via
 conjugation by $\sqrt{d^{(\alpha)}_\eps}$; i.e.:
 If $T_{s,\eps}^{(\alpha)}\phi_s = \lambda\phi_s$, then the corresponding eigenfunctions for $T_{f,\eps}^{(\alpha)}$ and $T_{b,\eps}^{(\alpha)}$ are $\phi_f =
-\sqrt{q_\eps}\phi_s$ and $\phi_b = \frac{\phi_s}{\sqrt{q_\eps}}$, respectively.\todo{double check that section}
+\sqrt{q_\eps}\phi_s$ and $\phi_b = \frac{\phi_s}{\sqrt{q_\eps}}$, respectively.
 
 Since $\sqrt{q_\eps}$ is the first eigenfunction with $\lambda_0 = 1$ of $T_s^{(\alpha)}$, the steady state of the forward operator is simply $q_\eps(x)$, while for the backward operator it is the uniform density, $\phi_b \equiv 1$.
 
@@ -113,9 +113,9 @@ Now we want to investigate the time evolution of a system that is described by i
 \dot{x}=-U(x)+\sqrt{2/\beta}\dot{w}
 \end{equation}
 
-where $U(x)$ is the potential energy of a state $x$, $\beta$ is some thermal factor which is inversely proportional to a given temperature and $w(t)$ is the Brownian motion in $n$ dimensions\todo{define it}.
+where $U(x)$ is the potential energy of a state $x$, $\beta$ is some thermal factor which is inversely proportional to a given temperature and $w(t)$ is the Brownian motion in $n$ dimensions.\footnote{For a definition see \ref{def:brownianMotion}.}
 
-Integration of the SDE \eqref{eq:langevin} produces random paths whose distribution defines a time dependent probability distributions on $\Omega$. To study the dynamics of the system, it is convenient to consider the time evolution of these probability distributions as it has been shown\todo{find source} that the transition probability density $p(x, t | x_0, 0)$ of finding the system at location $x$ at time $t$, given an initial location $x_0$ at time $t = 0$ satisfies the forward Fokker-Planck equation
+Integration of the SDE \eqref{eq:langevin} produces random paths whose distribution defines a time dependent probability distributions on $\Omega$. To study the dynamics of the system, it is convenient to consider the time evolution of these probability distributions as it has been shown (\cite{Garcia2007}) that the transition probability density $p(x, t | x_0, 0)$ of finding the system at location $x$ at time $t$, given an initial location $x_0$ at time $t = 0$ satisfies the forward Fokker-Planck equation
 
 \begin{equation}\label{eq:fokkerplanck}
 \frac{\partial p}{\partial t} = \frac{1}{\beta}\Delta p + \nabla\cdot(p\nabla U) =: \mathcal{L}p
@@ -246,7 +246,7 @@ g(x,t) = \sum_{n\geq 0} b_n e^{\lambda_n t}\psi_n(x)
 \end{equation*}
 
 with 
-\todo{check if weight function really is the same - $-\beta$ might be a problem!}
+
 \begin{equation*}
 b_n = \langle \psi_n, g(\cdot, 0) \rangle_w.
 \end{equation*}
@@ -312,7 +312,7 @@ Remembering that $\varphi_0 = e^{-\beta U}$ up to a normalization constant, we g
 
 Similar to definition \ref{def:diffusionDist} we define the diffusion distance at time $t$ between any two points $x_0, x_1 \in \Omega$ as the distance between the corresponding probability densities at time $t$, initialized at $x_0$ and $x_1$. Letting $p_{x_i}(x,t)$ be the solution of \eqref{eq:fokkerplanck} with initial condition $p(x,0 | x_i, 0) = \delta(x,x_i)$ we set
 
-\begin{definition}
+\begin{definition}\label{def:diffDistance2}
 \begin{equation*}
 D_t^2(x_0,x_1) = \|p_{x_0}(\cdot, t) - p_{x_1}(\cdot, t) \|_{L^2(\Omega, w)}^2.
 \end{equation*}
@@ -349,12 +349,12 @@ Now, again analogously to \autoref{chap:diffusionMaps}, we define the $k$-dimens
 
 \end{definition}
 
-\todo{write proper ending}
+Again, the Euclidian distance in the new embedding space approximates the diffusion distance as defined in \ref{def:diffDistance2} and thus it maps configurations with a high dynamical proximity close to each other.
+As a result, truncating after $k$ eigenfunctions yields a lower dimensional representation of a dynamical system that still captures the essential features for its expected long term dynamical evolution, where $k$ depends on the required accuracy.
 
+Moreover in \cite{Nadler2008} it is shown that this mapping is optimal among all possible $k$-dimensional mappings, in a mean squared error sense.
 
-
-
-
+In many real world applications one expects a ``spectral gap'' $\lambda_k\ll\lambda_{k+1}$ to occur. This is likely to be an indication that the long term evolution of the system can be approximated by only the first $k$ eigenfunctions.
 
 
 

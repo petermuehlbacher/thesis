@@ -1,3 +1,8 @@
 The contentual layout follows that of \cite{Coifman20065}, \cite{Nadler2006113}, \cite{Nadler2008} and \cite{Belkin2003}. Some definitions, theorems and examples will be taken from these works as well.
 
 \section{Dimensionality Reduction}
+As the storage capabilities continue to improve, the amount of available data sources grows tremendously and in response new techniques to deal with data emerged. One omnipresent issue is that measured data usually is in a high dimensional space, while the actual degree of freedom is much lower. For example, take a series of pictures that show a person turning their head from left to right. While each picture, comprised of $n\times n$ pixels, lies in a $n^2$-dimensional space, intuitively this set of pictures only has one dimension of freedom (i.e. the angle of rotation).
+
+Dimensionality reduction describes a class of procedures aiming to reduce the number of dimensions of the data's embedding space while retaining as much information as possible. This may be accomplished by either selecting the most ``important'' features (which is known as feature selection) or transforming the embedding space in a lower-dimensional one (which is known as feature extraction).
+
+In this thesis I will describe one of the latter approaches.

@@ -59,7 +59,7 @@ Notice that by definition of $a$ one obtains a symmetric form and thus a symmetr
 
 \subsection{Diffusion Kernels}
 \begin{theorem}[Spectral Properties of the Diffusion Operator]
-The diffusion operator $A$ with kernel $a$ is bounded from $L^2(\Gamma, d\mu)$ into itself, symmetric and positive semi-definite.
+The diffusion operator $A$ with kernel $a$ is bounded from $L^2(\Gamma, d\mu)$ into itself and symmetric.
 
 Moreover, its norm is $$\|A\|=1$$ and is attained by the eigenfunction $$Av=v.$$
 \end{theorem}
@@ -80,8 +80,7 @@ Applying the Cauchy-Schwarz inequality we get:
 Hence:
 $$\langle Af,f \rangle \leq \int_\Gamma |f(x)|\left(\int_\Gamma k(x,y)\frac{f(y)^2}{v(y)^2} d\mu(y)\right)^{\frac{1}{2}}d\mu(x)$$
 and by using the Cauchy-Schwarz inequality once again:
-$$\langle Af,f \rangle \leq \|f\|\left(\int_{\Gamma^2} \frac{k(x,y)}{v(y)^2}f(y)^2 d\mu(y)d\mu(x)\right)^{\frac{1}{2}} = \|f\|^2$$ by symmetry of the kernel which, in combination with \eqref{eq:positivityOfA}, also implies\todo{how?} the positivity of $A$.
-
+$$\langle Af,f \rangle \leq \|f\|\left(\int_{\Gamma^2} \frac{k(x,y)}{v(y)^2}f(y)^2 d\mu(y)d\mu(x)\right)^{\frac{1}{2}} = \|f\|^2.$$
 Plugging in $v$ for $f$ it follows immediately that the eigenvalue $1$ is actually obtained and $v$ is an eigenfunction.
 \end{proof}
 
